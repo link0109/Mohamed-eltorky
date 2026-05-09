@@ -33,7 +33,7 @@
         .profile { 
             width: 120px; height: 120px; border-radius: 50%; object-fit: cover; 
             border: 2px solid var(--gold); margin-bottom: 20px;
-            object-position: center 10%; /* لظهور الشعر */
+            object-position: center 10%;
         }
         .brand-container { text-align: center; margin-bottom: 30px; }
         .brand-name { font-family: 'Cinzel', serif; color: #fff; font-size: 32px; letter-spacing: 4px; text-transform: uppercase; margin: 0; }
@@ -63,7 +63,7 @@
             width: 100%; max-width: 380px; background: rgba(255,255,255,0.05); 
             border-radius: 15px; padding: 18px; margin-bottom: 15px; 
             border-right: 5px solid var(--gold); border: 1px solid var(--border-color);
-            cursor: pointer;
+            cursor: pointer; box-sizing: border-box;
         }
         .pkg-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
         .pkg-name { font-weight: bold; color: var(--gold); font-size: 16px; }
@@ -77,21 +77,21 @@
         }
         .session-item:hover { background: rgba(212, 175, 55, 0.1); }
 
-        /* الستايل الموحد لكل الشاشات المنبثقة */
         .modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); z-index: 9999; justify-content: center; align-items: center;
         }
         .modal-content { background: #1a1a1a; padding: 25px; border-radius: 20px; border: 1px solid var(--gold); width: 85%; max-width: 380px; text-align: right; color: white; }
         
-        select, input { width: 100%; padding: 12px; margin-top: 10px; border-radius: 8px; background: #000; color: white; border: 1px solid #333; box-sizing: border-box; font-family: 'Cairo', sans-serif; outline: none;}
+        select, input { width: 100%; padding: 12px; margin-top: 10px; border-radius: 8px; background: #000; color: white; border: 1px solid #333; box-sizing: border-box; font-family: 'Cairo'; outline: none;}
         .confirm-btn { background: var(--gold); color: #000; border: none; padding: 12px; width: 100%; border-radius: 10px; font-weight: bold; margin-top: 20px; cursor: pointer; font-family: 'Cairo'; }
-        .footer-copyrights { margin-top: auto; padding: 30px 0; text-align: center; color: rgba(255, 255, 255, 0.4); font-size: 12px; }
         
+        .notes-box { width: 100%; max-width: 380px; text-align: right; background: rgba(212, 175, 55, 0.1); padding: 15px; border-radius: 12px; margin: 10px 0 20px 0; border: 1px dashed var(--gold); }
         .pay-option-btn { display: block; width: 100%; padding: 15px; margin: 12px 0; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; text-align: center; font-family: 'Cairo'; text-decoration: none; }
         .vf-style { background: #e60000; color: white; }
         .orange-style { background: #ff6600; color: white; }
         .insta-style { background: white; color: black; }
+        .footer-copyrights { margin-top: auto; padding: 30px 0; text-align: center; color: rgba(255, 255, 255, 0.4); font-size: 12px; }
     </style>
 </head>
 <body>
@@ -140,21 +140,47 @@
     </div>
 
     <div id="packages-view">
-        <h2 style="color: var(--gold); font-family: 'Cinzel'; margin-bottom: 15px;">WEDDING PACKAGES</h2>
+        <h2 style="color: var(--gold); font-family: 'Cinzel'; margin-bottom: 15px;">WEDDING PACKAGES 2026</h2>
         
         <div class="package-card" onclick="bookPackage('VIP FULL DAY', '12,000 LE')">
             <div class="pkg-header"><span class="pkg-name">VIP FULL DAY</span><span class="pkg-price">12,000 LE</span></div>
-            <div class="pkg-desc">تفاصيل بكدج اليوم الكامل.. اضغط للحجز</div>
+            <div class="pkg-desc">سيشن كاجوال + حنة + زفاف + ريلز + حفلات (كتب كتاب/حنة/زفاف) + ألبومات VIP وهدايا</div>
         </div>
 
-        <h2 style="color: var(--gold); font-family: 'Cinzel'; margin: 20px 0 15px 0;">SESSIONS | جلسات التصوير</h2>
+        <div class="package-card" onclick="bookPackage('VIP WEDDING', '6,500 LE')">
+            <div class="pkg-header"><span class="pkg-name">VIP WEDDING</span><span class="pkg-price">6,500 LE</span></div>
+            <div class="pkg-desc">تصوير سيشن وقاعة + ريلز + ألبومات متنوعة وبرواز كبير ومرايا</div>
+        </div>
+
+        <div class="package-card" onclick="bookPackage('STANDARD WEDDING', '4,200 LE')">
+            <div class="pkg-header"><span class="pkg-name">STANDARD WEDDING</span><span class="pkg-price">4,200 LE</span></div>
+            <div class="pkg-desc">تصوير سيشن وحنة + ألبوم 30*45 + تابلوه 50*60</div>
+        </div>
+
+        <div class="package-card" onclick="bookPackage('BASIC WEDDING', '3,000 LE')">
+            <div class="pkg-header"><span class="pkg-name">BASIC WEDDING</span><span class="pkg-price">3,000 LE</span></div>
+            <div class="pkg-desc">تصوير سيشن + ألبوم 30*45 + تابلوه 40*60</div>
+        </div>
+
+        <h2 style="color: var(--gold); font-family: 'Cinzel'; margin: 20px 0 15px 0; font-size: 20px;">الخطوبة / الحنة / كتب الكتاب</h2>
+        <div class="package-card" onclick="bookPackage('VIP PKG (Eng)', '3,700 LE')">
+            <div class="pkg-header"><span class="pkg-name">VIP PACKAGE</span><span class="pkg-price">3,700 LE</span></div>
+            <div class="pkg-desc">تصوير سيشن وحفلة + ألبوم 30*45 + 2 تابلوه + فلاشة</div>
+        </div>
+
+        <h2 style="color: var(--gold); font-family: 'Cinzel'; margin: 20px 0 15px 0; font-size: 20px;">SESSIONS | جلسات التصوير</h2>
         <div class="package-card" style="border-right: 5px solid #fff; padding: 5px; cursor:default;">
             <div class="session-item" onclick="bookPackage('سيشن زفاف', '2,000 LE')"><span>سيشن زفاف</span><b>2,000 LE</b></div>
             <div class="session-item" onclick="bookPackage('سيشن خطوبة', '1,700 LE')"><span>سيشن خطوبة</span><b>1,700 LE</b></div>
             <div class="session-item" onclick="bookPackage('تصوير قاعة', '1,700 LE')"><span>تصوير قاعة</span><b>1,700 LE</b></div>
         </div>
 
-        <button class="confirm-btn" onclick="showMain()" style="background:none; color:var(--gold); border:1px solid var(--gold); width:auto; padding:10px 40px; margin: 20px 0 40px 0;">العودة للرئيسية</button>
+        <div class="notes-box">
+            <h4 style="color: var(--gold); margin: 0 0 8px 0;">NOTES | ملاحظات</h4>
+            <p style="font-size: 12px; color:#eee; margin:0;">العربون 1000 ج، والتسليم خلال 21-28 يوم.</p>
+        </div>
+
+        <button class="confirm-btn" onclick="showMain()" style="background:none; color:var(--gold); border:1px solid var(--gold); width:auto; padding:10px 40px; margin-bottom: 40px;">العودة للرئيسية</button>
     </div>
 
     <div class="footer-copyrights">© EL TORKY Photographer</div>
@@ -162,83 +188,55 @@
 
 <div id="booking-modal" class="modal"><div class="modal-content">
     <h3 style="text-align:center; color:var(--gold);">تفاصيل الحجز</h3>
-    <input type="text" id="user-name" placeholder="الاسم بالكامل">
-    <select id="session-type">
-        <option value="سيشن زفاف">سيشن زفاف</option>
-        <option value="سيشن خطوبة">سيشن خطوبة</option>
-        <option value="تصوير قاعة">تصوير قاعة</option>
-    </select>
-    <input type="date" id="session-date">
-    <button class="confirm-btn" onclick="sendBookingWhatsApp()">تأكيد عبر واتساب</button>
-    <p onclick="closeAllModals()" style="text-align:center; cursor:pointer; color:#888;">إغلاق</p>
+    <input type="text" id="u-name" placeholder="الاسم">
+    <select id="u-type"><option value="سيشن">سيشن</option><option value="فرح">فرح كامل</option></select>
+    <input type="date" id="u-date">
+    <button class="confirm-btn" onclick="sendBooking()">تأكيد الحجز</button>
+    <p onclick="closeAll()" style="text-align:center; cursor:pointer; color:#888;">إغلاق</p>
 </div></div>
 
 <div id="call-modal" class="modal"><div class="modal-content" style="text-align:center;">
     <h3 style="color:var(--gold);">اتصل بنا</h3>
     <a href="tel:01024486602" class="pay-option-btn vf-style">01024486602</a>
     <a href="tel:01206999546" class="pay-option-btn orange-style">01206999546</a>
-    <p onclick="closeAllModals()" style="cursor:pointer; color:#888;">إغلاق</p>
+    <p onclick="closeAll()" style="cursor:pointer; color:#888;">إغلاق</p>
 </div></div>
 
 <div id="payment-selection-modal" class="modal"><div class="modal-content">
-    <h3 style="text-align:center; color:var(--gold);">وسيلة التحويل</h3>
-    <button class="pay-option-btn vf-style" onclick="openSubModal('vfcash-modal')">فودافون كاش</button>
-    <button class="pay-option-btn orange-style" onclick="openSubModal('orange-cash-modal')">أورنج كاش</button>
+    <button class="pay-option-btn vf-style" onclick="openSub('vfcash-modal')">فودافون كاش</button>
+    <button class="pay-option-btn orange-style" onclick="openSub('orange-cash-modal')">أورنج كاش</button>
     <button class="pay-option-btn insta-style" onclick="window.location.href='https://ipn.eg/S/torky23/instapay/1Qtkaq'">إنستا باي</button>
-    <p onclick="closeAllModals()" style="text-align:center; cursor:pointer; color:#888;">إغلاق</p>
+    <p onclick="closeAll()" style="text-align:center; cursor:pointer; color:#888;">إغلاق</p>
 </div></div>
 
 <div id="vfcash-modal" class="modal"><div class="modal-content">
-    <h3 style="color:#e60000; text-align:center;">فودافون كاش</h3>
-    <input type="number" id="vf-amount" placeholder="أدخل المبلغ">
-    <button class="confirm-btn" style="background:#e60000; color:white;" onclick="processVFCash()">اتصال وتحويل</button>
-    <p onclick="closeAllModals()" style="text-align:center; cursor:pointer; color:#888;">إغلاق</p>
+    <input type="number" id="v-amt" placeholder="المبلغ">
+    <button class="confirm-btn" style="background:#e60000; color:white;" onclick="doVF()">تحويل</button>
+    <p onclick="closeAll()" style="text-align:center; cursor:pointer;">إغلاق</p>
 </div></div>
 
 <div id="orange-cash-modal" class="modal"><div class="modal-content">
-    <h3 style="color:#ff6600; text-align:center;">أورنج كاش</h3>
-    <input type="number" id="orange-amount" placeholder="أدخل المبلغ">
-    <button class="confirm-btn" style="background:#ff6600; color:white;" onclick="processOrangeCash()">اتصال وتحويل</button>
-    <p onclick="closeAllModals()" style="text-align:center; cursor:pointer; color:#888;">إغلاق</p>
+    <input type="number" id="o-amt" placeholder="المبلغ">
+    <button class="confirm-btn" style="background:#ff6600; color:white;" onclick="doOrange()">تحويل</button>
+    <p onclick="closeAll()" style="text-align:center; cursor:pointer;">إغلاق</p>
 </div></div>
 
 <script>
-// التحكم في الصفحات
 function showPackages() { document.getElementById('main-view').style.display='none'; document.getElementById('packages-view').style.display='flex'; window.scrollTo(0,0); }
 function showMain() { document.getElementById('packages-view').style.display='none'; document.getElementById('main-view').style.display='flex'; }
-
-// التحكم في المودالز
 function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-function openSubModal(id) { closeAllModals(); document.getElementById(id).style.display = 'flex'; }
-function closeAllModals() { 
-    const modals = document.querySelectorAll('.modal');
-    modals.forEach(m => m.style.display = 'none');
-}
+function openSub(id) { closeAll(); document.getElementById(id).style.display = 'flex'; }
+function closeAll() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); }
 
-// الوظائف
-function bookPackage(name, price) {
-    let msg = `أهلاً يا فندم، محتاج استفسر عن:\nبكدج: ${name}\nالسعر: ${price}`;
-    window.open(`https://wa.me/201024486602?text=${encodeURIComponent(msg)}`, '_blank');
+function bookPackage(n, p) { window.open(`https://wa.me/201024486602?text=${encodeURIComponent('استفسار عن '+n+' بسعر '+p)}`); }
+function sendBooking() {
+    const n = document.getElementById('u-name').value;
+    const d = document.getElementById('u-date').value;
+    if(!n || !d) return alert("أكمل البيانات");
+    window.open(`https://wa.me/201024486602?text=${encodeURIComponent('حجز باسم: '+n+' بتاريخ: '+d)}`);
 }
-
-function sendBookingWhatsApp() {
-    const name = document.getElementById('user-name').value;
-    const type = document.getElementById('session-type').value;
-    const date = document.getElementById('session-date').value;
-    if(!name || !date) return alert("يا فندم كمل البيانات الأول");
-    let msg = `حجز جديد لمحمد التركي:\nالاسم: ${name}\nالمناسبة: ${type}\nالتاريخ: ${date}`;
-    window.open(`https://wa.me/201024486602?text=${encodeURIComponent(msg)}`, '_blank');
-}
-
-function processVFCash() {
-    let amt = document.getElementById('vf-amount').value;
-    if(amt) window.location.href = `tel:*9*7*01024486602*${amt}%23`;
-}
-
-function processOrangeCash() {
-    let amt = document.getElementById('orange-amount').value;
-    if(amt) window.location.href = `tel:%237115*7*${amt}*01206999546%23`;
-}
+function doVF() { let a = document.getElementById('v-amt').value; if(a) window.location.href=`tel:*9*7*01024486602*${a}%23`; }
+function doOrange() { let a = document.getElementById('o-amt').value; if(a) window.location.href=`tel:%237115*7*${a}*01206999546%23`; }
 </script>
 </body>
 </html>
