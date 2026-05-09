@@ -18,23 +18,24 @@
         body { 
             margin: 0; 
             font-family: 'Cairo', sans-serif; 
-            background: #000; 
+            background: #000 url('background.jpg') no-repeat center center/cover fixed; 
             color: #fff; 
             display: flex;
             justify-content: center;
             min-height: 100vh;
         }
 
-        /* حاوية الصفحة الرئيسية */
-        .main-container {
+        .overlay {
             width: 100%;
             max-width: 450px;
             padding: 40px 20px;
             text-align: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7), #000);
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            min-height: 100vh;
         }
 
-        /* صورة البروفايل بصيغة JPEG كابيتال */
+        /* صورة البروفايل بالامتداد الجديد jpg */
         .profile-pic {
             width: 140px;
             height: 140px;
@@ -42,7 +43,7 @@
             border: 2px solid var(--gold);
             object-fit: cover;
             margin-bottom: 15px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
         .brand-title {
@@ -92,20 +93,18 @@
             font-weight: 700;
         }
 
-        /* زر الباقات المميز */
+        /* تمييز زر الباقات وزر الحجز */
         .packages-btn {
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid var(--gold);
-            margin-bottom: 25px;
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid var(--gold);
         }
-
-        .packages-btn i { color: var(--gold); }
+        .booking-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #fff;
+        }
 
         /* التحكم في عرض الأقسام */
-        #main-content, #packages-content {
-            width: 100%;
-        }
-
+        #main-content, #packages-content { width: 100%; }
         #packages-content { display: none; }
 
         /* كروت الباقات */
@@ -116,11 +115,12 @@
             margin-bottom: 15px;
             border-right: 4px solid var(--gold);
             text-align: right;
+            position: relative;
         }
 
         .package-name { color: var(--gold); font-weight: bold; font-size: 18px; margin-bottom: 5px; }
-        .package-price { float: left; font-size: 16px; background: var(--gold); color: #000; padding: 2px 10px; border-radius: 5px; }
-        .package-desc { font-size: 13px; color: #aaa; clear: both; padding-top: 10px; }
+        .package-price { float: left; font-size: 16px; background: var(--gold); color: #000; padding: 2px 10px; border-radius: 5px; font-weight: bold; }
+        .package-desc { font-size: 13px; color: #aaa; clear: both; padding-top: 10px; line-height: 1.6; }
 
         .back-btn {
             background: none;
@@ -132,27 +132,63 @@
             margin-top: 20px;
             font-family: 'Cairo';
         }
+
+        /* Modal simple style */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: #1a1a1a;
+            padding: 25px;
+            border-radius: 20px;
+            width: 85%;
+            max-width: 350px;
+            border: 1px solid var(--gold);
+        }
+        input, select {
+            width: 100%; padding: 12px; margin: 10px 0;
+            border-radius: 10px; border: 1px solid #333;
+            background: #000; color: #fff; font-family: 'Cairo';
+        }
+        .confirm-btn {
+            background: var(--gold); color: #000; border: none;
+            padding: 12px; width: 100%; border-radius: 10px;
+            font-weight: bold; cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
-<div class="main-container">
-    <!-- صورة البروفايل - تأكد أن اسم الملف عندك profile.JPEG -->
-    <img src="profile.JPEG" alt="EL TORKY" class="profile-pic">
+<div class="overlay">
+    <!-- صورة البروفايل بالامتداد المطلوب .jpg -->
+    <img src="profile.jpg" alt="EL TORKY" class="profile-pic">
 
     <div class="brand-title">EL TORKY</div>
     <div class="brand-sub">Photography</div>
 
     <!-- القسم الرئيسي -->
     <div id="main-content">
+        <!-- زر الباقات أول زرار كما طلبت -->
         <div class="link-card packages-btn" onclick="showPackages()">
-            <i class="fas fa-tags"></i>
-            <span>زرار الاسعار والبكدجات</span>
+            <i class="fas fa-tags" style="color: var(--gold);"></i>
+            <span>الأسعار والبكدجات</span>
+        </div>
+
+        <!-- زر احجز الآن بعده مباشرة -->
+        <div class="link-card booking-btn" onclick="openBooking()">
+            <i class="fas fa-calendar-check"></i>
+            <span>احجز الآن | Book Now</span>
         </div>
 
         <a href="https://wa.me/201024486602" class="link-card">
             <i class="fab fa-whatsapp" style="color: #25D366;"></i>
-            <span>تواصل واتساب</span>
+            <span>تواصل عبر واتساب</span>
         </a>
 
         <a href="https://www.facebook.com/share/187a3beKHT/" class="link-card">
@@ -164,14 +200,9 @@
             <i class="fab fa-instagram" style="color: #E1306C;"></i>
             <span>إنستجرام</span>
         </a>
-
-        <a href="tel:01024486602" class="link-card">
-            <i class="fas fa-phone-alt"></i>
-            <span>اتصال هاتفي</span>
-        </a>
     </div>
 
-    <!-- قسم الباقات (مخفي ويظهر عند الضغط) -->
+    <!-- قسم الباقات -->
     <div id="packages-content">
         <h3 style="color: var(--gold); margin-bottom: 25px;">باقات وعروض 2026</h3>
         
@@ -195,7 +226,24 @@
 
         <button class="back-btn" onclick="showMain()">العودة للرئيسية</button>
     </div>
+</div>
 
+<!-- مودال الحجز -->
+<div id="booking-modal" class="modal">
+    <div class="modal-content">
+        <h3 style="text-align:center; color:var(--gold); margin-top:0;">بيانات الحجز</h3>
+        <input type="text" id="cust-name" placeholder="الاسم بالكامل">
+        <select id="event-type">
+            <option value="" disabled selected>نوع المناسبة</option>
+            <option value="زفاف">زفاف</option>
+            <option value="خطوبة">خطوبة</option>
+            <option value="كتب كتاب">كتب كتاب</option>
+            <option value="سيشن خارجي">سيشن خارجي</option>
+        </select>
+        <input type="date" id="event-date">
+        <button class="confirm-btn" onclick="sendWhatsApp()">تأكيد الحجز</button>
+        <p onclick="closeBooking()" style="text-align:center; color:#888; cursor:pointer; margin-top:15px; font-size:14px;">إلغاء</p>
+    </div>
 </div>
 
 <script>
@@ -207,6 +255,29 @@
     function showMain() {
         document.getElementById('packages-content').style.display = 'none';
         document.getElementById('main-content').style.display = 'block';
+    }
+
+    function openBooking() {
+        document.getElementById('booking-modal').style.display = 'flex';
+    }
+
+    function closeBooking() {
+        document.getElementById('booking-modal').style.display = 'none';
+    }
+
+    function sendWhatsApp() {
+        const name = document.getElementById('cust-name').value;
+        const type = document.getElementById('event-type').value;
+        const date = document.getElementById('event-date').value;
+        
+        if(!name || !type || !date) {
+            alert("برجاء إكمال البيانات يا فندم");
+            return;
+        }
+
+        const message = `طلب حجز جديد لـ محمد التركي:\nالاسم: ${name}\nالمناسبة: ${type}\nالتاريخ: ${date}`;
+        const url = `https://wa.me/201024486602?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
     }
 </script>
 
