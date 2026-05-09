@@ -16,7 +16,7 @@
         body {
             margin: 0; font-family: 'Montserrat', 'Cairo', sans-serif;
             background: #0f0f0f url('background.jpeg') no-repeat center center/cover fixed;
-            display: flex; justify-content: center; overflow-x: hidden;
+            display: flex; justify-content: center;
         }
 
         .overlay {
@@ -30,13 +30,13 @@
         .brand-name { font-family: 'Cinzel', serif; color: #fff; font-size: 32px; letter-spacing: 4px; text-transform: uppercase; margin: 0; }
         .brand-sub { color: var(--gold); font-size: 11px; letter-spacing: 6px; text-transform: uppercase; margin-top: 5px; }
 
-        /* الأزرار الرئيسية */
         .button {
             display: flex; align-items: center; background: var(--bg-blur);
             border: 1px solid var(--border-color); color: white;
             text-decoration: none; margin: 8px 0; width: 100%; max-width: 360px;
             border-radius: 12px; padding: 6px; transition: 0.3s; cursor: pointer;
         }
+
         .icon-box { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 18px; color: #fff; }
         .btn-text { flex-grow: 1; text-align: center; font-size: 15px; padding-right: 42px; }
 
@@ -46,37 +46,25 @@
         .wa .icon-box { background: #25D366; }
         .call .icon-box { background: #444; }
         .vfcash .icon-box { background: var(--gold); color: #000; }
-
-        /* القوائم */
-        #main-view, #packages-view { width: 100%; display: flex; flex-direction: column; align-items: center; }
-        #packages-view { display: none; }
-
-        /* مودال الدفع (نفس تصميم الصورة) */
-        .modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center;
-        }
-        .modal-content {
-            background: #121212; border: 2px solid var(--gold); border-radius: 25px;
-            width: 90%; max-width: 400px; padding: 30px 20px; position: relative; text-align: center;
-        }
-        .modal-title { color: var(--gold); font-size: 22px; font-weight: bold; margin-bottom: 25px; font-family: 'Cairo', sans-serif; }
         
-        .pay-btn {
-            width: 100%; padding: 15px; margin: 10px 0; border-radius: 12px; border: none;
-            font-weight: bold; font-size: 16px; cursor: pointer; color: white; display: block; text-decoration: none;
+        /* Modals Styling */
+        #payment-selection-modal, #vfcash-modal, #orange-cash-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 5000; justify-content: center; align-items: center;
         }
-        .btn-vodafone { background: #e60000; }
-        .btn-orange { background: #ff6600; }
-        .btn-instapay { background: #fff; color: #000; }
-        .close-modal { color: #888; background: none; border: none; margin-top: 20px; cursor: pointer; font-size: 18px; }
+        .modal-content { background: #1a1a1a; padding: 25px; border-radius: 20px; border: 1px solid var(--gold); width: 85%; max-width: 380px; text-align: center; color: white; }
+        
+        input { 
+            width: 100%; padding: 12px; margin-top: 10px; border-radius: 8px; 
+            background: #000; color: white; border: 1px solid #333; 
+            box-sizing: border-box; font-family: 'Cairo', sans-serif; font-size: 18px; outline: none; text-align: center;
+        }
 
-        /* واجهة إدخال المبلغ */
-        .amount-view { display: none; text-align: center; }
-        input[type="number"] {
-            width: 80%; padding: 12px; margin: 15px 0; border-radius: 8px; border: 1px solid var(--gold);
-            background: #222; color: #fff; text-align: center; font-size: 20px;
-        }
+        .confirm-btn { background: var(--gold); color: #000; border: none; padding: 12px; width: 100%; border-radius: 10px; font-weight: bold; margin-top: 20px; cursor: pointer; }
+        .pay-option-btn { display: block; width: 100%; padding: 15px; margin: 12px 0; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; }
+        .vf-style { background: #e60000; color: white; }
+        .orange-style { background: #ff6600; color: white; }
+        .insta-style { background: white; color: black; }
 
         .footer-copyrights { margin-top: auto; padding: 30px 0; text-align: center; color: rgba(255, 255, 255, 0.4); font-size: 12px; letter-spacing: 2px; }
     </style>
@@ -90,93 +78,103 @@
         <div class="brand-sub">Professional Photographer</div>
     </div>
 
-    <div id="main-view">
-        <div class="button" style="border: 2px solid var(--gold);" onclick="showPackages()">
-            <div class="icon-box" style="background:var(--gold); color:black;"><i class="fas fa-tags"></i></div>
-            <div class="btn-text">الأسعار والبكدجات | Prices</div>
-        </div>
+    <!-- التواصل الاجتماعي كاملة -->
+    <a class="button fb" href="https://www.facebook.com/share/187a3beKHT/" target="_blank">
+        <div class="icon-box"><i class="fas fa-user-circle"></i></div><div class="btn-text">Personal Profile</div>
+    </a>
 
-        <!-- السوشيال ميديا كاملة -->
-        <a class="button fb" href="https://www.facebook.com/share/1dk5VXaDCu/?mibextid=wwXIfr" target="_blank">
-            <div class="icon-box"><i class="fab fa-facebook-f"></i></div><div class="btn-text">Facebook Page</div>
-        </a>
-        <a class="button ig" href="https://www.instagram.com/el_torky_photography" target="_blank">
-            <div class="icon-box"><i class="fab fa-instagram"></i></div><div class="btn-text">Instagram</div>
-        </a>
-        <a class="button tk" href="https://www.tiktok.com/@eltorky23" target="_blank">
-            <div class="icon-box"><i class="fab fa-tiktok"></i></div><div class="btn-text">TikTok</div>
-        </a>
-        <a class="button wa" href="https://wa.me/201024486602" target="_blank">
-            <div class="icon-box"><i class="fab fa-whatsapp"></i></div><div class="btn-text">WhatsApp</div>
-        </a>
-        <div class="button call" onclick="window.location.href='tel:01024486602'">
-            <div class="icon-box"><i class="fas fa-phone-alt"></i></div><div class="btn-text">اتصل بنا | Call Me</div>
-        </div>
-        <div class="button vfcash" onclick="openPaymentModal()">
-            <div class="icon-box"><i class="fas fa-money-bill-wave"></i></div><div class="btn-text">تحويل المبلغ | Transfer</div>
-        </div>
+    <a class="button fb" href="https://www.facebook.com/share/1dk5VXaDCu/?mibextid=wwXIfr" target="_blank">
+        <div class="icon-box"><i class="fab fa-facebook-f"></i></div><div class="btn-text">Facebook Page</div>
+    </a>
+
+    <a class="button ig" href="https://www.instagram.com/el_torky_photography" target="_blank">
+        <div class="icon-box"><i class="fab fa-instagram"></i></div><div class="btn-text">Instagram</div>
+    </a>
+
+    <a class="button tk" href="https://www.tiktok.com/@eltorky23" target="_blank">
+        <div class="icon-box"><i class="fab fa-tiktok"></i></div><div class="btn-text">TikTok</div>
+    </a>
+
+    <a class="button wa" href="https://wa.me/201024486602" target="_blank">
+        <div class="icon-box"><i class="fab fa-whatsapp"></i></div><div class="btn-text">WhatsApp</div>
+    </a>
+
+    <div class="button call" onclick="window.location.href='tel:01024486602'">
+        <div class="icon-box"><i class="fas fa-phone-alt"></i></div><div class="btn-text">اتصل بنا | Call Me</div>
     </div>
 
-    <!-- مودال اختيار وسيلة التحويل -->
-    <div id="payment-modal" class="modal">
-        <div class="modal-content" id="method-selector">
-            <div class="modal-title">اختر وسيلة التحويل</div>
-            <button class="pay-btn btn-vodafone" onclick="showAmountInput('vodafone')">Vodafone Cash | فودافون كاش</button>
-            <button class="pay-btn btn-orange" onclick="showAmountInput('orange')">Orange Cash | أورنج كاش</button>
-            <button class="pay-btn btn-instapay" onclick="copyInsta()">InstaPay | إنستا باي</button>
-            <button class="close-modal" onclick="closePaymentModal()">إغلاق</button>
-        </div>
-
-        <!-- واجهة إدخال المبلغ -->
-        <div class="modal-content amount-view" id="amount-input-view">
-            <div class="modal-title" id="provider-title">إدخال المبلغ</div>
-            <p style="color:#ccc; font-size:14px;">اكتب المبلغ المراد تحويله</p>
-            <input type="number" id="amount-value" placeholder="0.00">
-            <button class="pay-btn btn-vodafone" style="background:var(--gold); color:black;" onclick="executeUSSD()">إرسال الآن</button>
-            <button class="close-modal" onclick="backToMethods()">رجوع</button>
-        </div>
+    <div class="button vfcash" onclick="openPaymentSelection()">
+        <div class="icon-box"><i class="fas fa-money-bill-wave"></i></div><div class="btn-text">تحويل المبلغ | Transfer</div>
     </div>
 
     <div class="footer-copyrights">© EL TORKY Photographer</div>
 </div>
 
+<!-- مودالات الدفع (نفس كود المقدم بالظبط) -->
+<div id="payment-selection-modal">
+    <div class="modal-content">
+        <h3 style="color:var(--gold); margin-bottom: 20px;">اختر وسيلة التحويل</h3>
+        <button class="pay-option-btn vf-style" onclick="showVFCashPage()">فودافون كاش | Vodafone Cash</button>
+        <button class="pay-option-btn orange-style" onclick="showOrangeCashPage()">أورنج كاش | Orange Cash</button>
+        <button class="pay-option-btn insta-style" onclick="handleInstaPay()">إنستا باي | InstaPay</button>
+        <p onclick="closePaymentSelection()" style="color:#888; cursor:pointer; margin-top:15px;">إغلاق</p>
+    </div>
+</div>
+
+<div id="vfcash-modal">
+    <div class="modal-content">
+        <h3 style="color:#e60000; margin-bottom: 20px;">فودافون كاش</h3>
+        <input type="text" inputmode="decimal" id="cash-amount" placeholder="أدخل المبلغ هنا">
+        <button class="confirm-btn" onclick="makeVFCashCall()" style="background:#e60000; color:white;">اتصال وتحويل الآن</button>
+        <p onclick="closeVFCash()" style="color:#888; cursor:pointer; margin-top:20px;">إغلاق</p>
+    </div>
+</div>
+
+<div id="orange-cash-modal">
+    <div class="modal-content">
+        <h3 style="color:#ff6600; margin-bottom: 20px;">أورنج كاش</h3>
+        <input type="text" inputmode="decimal" id="orange-amount" placeholder="أدخل المبلغ هنا">
+        <button class="confirm-btn" onclick="makeOrangeCashCall()" style="background:#ff6600; color:white;">اتصال وتحويل الآن</button>
+        <p onclick="closeOrangeCash()" style="color:#888; cursor:pointer; margin-top:20px;">إغلاق</p>
+    </div>
+</div>
+
 <script>
-let currentProvider = '';
-
-function showPackages() { /* دالة عرض البكدجات كما هي في الكود السابق */ }
-function openPaymentModal() { document.getElementById('payment-modal').style.display='flex'; }
-function closePaymentModal() { document.getElementById('payment-modal').style.display='none'; backToMethods(); }
-
-function showAmountInput(provider) {
-    currentProvider = provider;
-    document.getElementById('method-selector').style.display = 'none';
-    document.getElementById('amount-input-view').style.display = 'block';
-    document.getElementById('provider-title').innerText = provider === 'vodafone' ? 'فودافون كاش' : 'أورنج كاش';
+function convertNumbers(str) {
+    const arabicNums = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
+    for (let i = 0; i < 10; i++) { str = str.replace(arabicNums[i], i); }
+    return str;
 }
 
-function backToMethods() {
-    document.getElementById('method-selector').style.display = 'block';
-    document.getElementById('amount-input-view').style.display = 'none';
+function openPaymentSelection() { document.getElementById('payment-selection-modal').style.display = 'flex'; }
+function closePaymentSelection() { document.getElementById('payment-selection-modal').style.display = 'none'; }
+function showVFCashPage() { closePaymentSelection(); document.getElementById('vfcash-modal').style.display = 'flex'; }
+function showOrangeCashPage() { closePaymentSelection(); document.getElementById('orange-cash-modal').style.display = 'flex'; }
+function closeOrangeCash() { document.getElementById('orange-cash-modal').style.display = 'none'; }
+function closeVFCash() { document.getElementById('vfcash-modal').style.display = 'none'; }
+
+function handleInstaPay() {
+    window.location.href = "https://instapay.me/S/el.torky/instapay"; // ضع رابط الانستا باي الخاص بك هنا
 }
 
-function executeUSSD() {
-    const amount = document.getElementById('amount-value').value;
-    if(!amount || amount <= 0) { alert("من فضلك أدخل مبلغ صحيح"); return; }
-    
-    let ussdCode = '';
-    if(currentProvider === 'vodafone') {
-        // كود فودافون: *9*7*الرقم*المبلغ#
-        ussdCode = `*9*7*01024486602*${amount}%23`;
-    } else {
-        // كود أورنج: #115*1*الرقم*المبلغ*رقمك_السري# (سيطلب الرقم السري من العميل)
-        ussdCode = `*115*1*01221193309*${amount}%23`;
-    }
-    window.location.href = `tel:${ussdCode}`;
+function makeVFCashCall() {
+    let amount = document.getElementById('cash-amount').value;
+    amount = convertNumbers(amount); 
+    if(!amount) { alert("يرجى كتابة المبلغ أولاً"); return; }
+    const phoneNumber = "01024486602"; // رقم فودافون كاش الخاص بك
+    const ussd = `*9*7*${phoneNumber}*${amount}%23`;
+    window.location.href = `tel:${ussd}`;
+    closeVFCash();
 }
 
-function copyInsta() {
-    navigator.clipboard.writeText('el.torky@instapay');
-    alert("تم نسخ عنوان InstaPay: el.torky@instapay");
+function makeOrangeCashCall() {
+    let amount = document.getElementById('orange-amount').value;
+    amount = convertNumbers(amount); 
+    if(!amount) { alert("يرجى كتابة المبلغ أولاً"); return; }
+    const myNumber = "01221193309"; // رقم أورنج كاش الخاص بك
+    const ussd = `%237115*7*${amount}*${myNumber}%23`;
+    window.location.href = `tel:${ussd}`;
+    closeOrangeCash();
 }
 </script>
 </body>
