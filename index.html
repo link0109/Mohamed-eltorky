@@ -65,7 +65,7 @@
             width: 100%; max-width: 380px; background: rgba(255,255,255,0.05); 
             border-radius: 15px; padding: 18px; margin-bottom: 15px; 
             border-right: 5px solid var(--gold); border: 1px solid var(--border-color);
-            cursor: pointer; transition: 0.3s; text-decoration: none; display: block;
+            cursor: pointer; transition: 0.3s; display: block; text-decoration: none;
         }
         .package-card:hover { background: rgba(255,255,255,0.1); transform: scale(1.02); }
         .pkg-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
@@ -123,7 +123,6 @@
             <div class="icon-box"><i class="fas fa-user-circle"></i></div><div class="btn-text">Personal Profile</div>
         </a>
 
-        <!-- لينك الفيسبوك بيج الجديد يا فندم -->
         <a class="button fb" href="https://www.facebook.com/share/1dk5VXaDCu/?mibextid=wwXIfr" target="_blank">
             <div class="icon-box"><i class="fab fa-facebook-f"></i></div><div class="btn-text">Facebook Page</div>
         </a>
@@ -174,19 +173,41 @@
 
         <h2 style="color: var(--gold); font-family: 'Cinzel'; margin: 20px 0 15px 0; font-size: 20px;">الخطوبة / الحنة / كتب الكتاب</h2>
 
-        <div class="package-card" onclick="bookPackage('VIP PACKAGE (خطوبة)', '3,700 LE')">
+        <div class="package-card" onclick="bookPackage('VIP PACKAGE', '3,700 LE')">
             <div class="pkg-header"><span class="pkg-name">VIP PACKAGE</span><span class="pkg-price">3,700 LE</span></div>
             <div class="pkg-desc">تصوير السيشن + تصوير الحفلة + ألبوم 30*45 + 2 تابلوه 30*40 + فلاشة هدية</div>
         </div>
 
-        <div class="package-card" onclick="bookPackage('STANDARD (خطوبة)', '2,800 LE')">
+        <div class="package-card" onclick="bookPackage('STANDARD', '2,800 LE')">
             <div class="pkg-header"><span class="pkg-name">STANDARD</span><span class="pkg-price">2,800 LE</span></div>
             <div class="pkg-desc">تصوير السيشن + تصوير الحفلة</div>
         </div>
 
-        <div class="package-card" onclick="bookPackage('BASIC (خطوبة)', '2,200 LE')">
+        <div class="package-card" onclick="bookPackage('BASIC', '2,200 LE')">
             <div class="pkg-header"><span class="pkg-name">BASIC</span><span class="pkg-price">2,200 LE</span></div>
             <div class="pkg-desc">تصوير السيشن + ألبوم 30*45</div>
+        </div>
+
+        <h2 style="color: var(--gold); font-family: 'Cinzel'; margin: 20px 0 15px 0; font-size: 20px;">SESSIONS | جلسات التصوير</h2>
+        
+        <div class="package-card" style="border-right: 5px solid #fff;" onclick="bookPackage('Session / Party Inquiry', 'Inquiry')">
+            <div class="pkg-desc" style="color: #fff;">
+                • سيشن زفاف: <b>2,000 LE</b><br>
+                • سيشن خطوبة: <b>1,700 LE</b><br>
+                • سيشن كاجوال / كتب كتاب: <b>1,500 LE</b><br>
+                • تصوير قاعة (عدد صور غير محدود): <b>1,700 LE</b><br>
+                • تصوير حفلة (كتب كتاب/حنة/خطوبة): <b>1,300 LE</b>
+            </div>
+        </div>
+
+        <div class="notes-box">
+            <h4 style="color: var(--gold); margin: 0 0 8px 0; font-size: 16px;">NOTES | ملاحظات</h4>
+            <ul style="color: #eee; font-size: 12.5px; padding-right: 20px; margin: 0; line-height: 1.6;">
+                <li>جميع البكدجات مقدم حجز 1000 ج (ماعدا VIP Full Day مقدم 5000 ج).</li>
+                <li>يتم دفع العربون في الاستوديو أو عبر فودافون كاش.</li>
+                <li>تسديد باقي الحساب كحد أقصى يوم المناسبة.</li>
+                <li>التسليم خلال 21 إلى 28 يوم كحد أقصى.</li>
+            </ul>
         </div>
 
         <button class="confirm-btn" onclick="showMain()" style="background:none; color:var(--gold); border:1px solid var(--gold); width:auto; padding:10px 40px; margin-bottom: 40px;">العودة للرئيسية</button>
@@ -199,7 +220,6 @@
     <div class="modal-content">
         <h3 style="text-align:center; color:var(--gold); margin-bottom: 15px; font-size: 26px;">تفاصيل الحجز</h3>
         <p style="text-align:center; color:#fff; font-size:14px; margin-bottom: 15px;">ألف مبروك يا فندم 🎉</p>
-        
         <label>المناسبة (Event Type):</label>
         <select id="session-type" onchange="toggleTime()">
             <option value="" disabled selected>اضغط لاختيار المناسبة</option>
@@ -210,10 +230,8 @@
             <option value="سيشن خطوبة (Engagement Session)">سيشن خطوبة (Engagement Session)</option>
             <option value="قاعة أو فرح (Party)">قاعة أو فرح (Party)</option>
         </select>
-
         <label style="display:block; margin-top:15px;">التاريخ (Date):</label>
         <input type="date" id="session-date">
-
         <div id="time-selection" style="display:none; margin-top:15px;">
             <label>موعد كتب الكتاب (Timing):</label>
             <select id="session-time">
@@ -222,10 +240,8 @@
                 <option value="بعد صلاة العشاء">بعد صلاة العشاء</option>
             </select>
         </div>
-
         <label style="display:block; margin-top:15px;">الاسم (Full Name):</label>
         <input type="text" id="user-name" placeholder="اكتب اسم حضرتك هنا">
-        
         <button class="confirm-btn" onclick="sendToWhatsApp()">تأكيد عبر واتساب</button>
         <p onclick="closeBooking()" style="text-align:center; color:#888; cursor:pointer; margin-top:15px;">إغلاق</p>
     </div>
@@ -279,14 +295,12 @@ function openBooking() { document.getElementById('booking-modal').style.display 
 function closeBooking() { document.getElementById('booking-modal').style.display = 'none'; }
 function openCallModal() { document.getElementById('call-modal').style.display = 'flex'; }
 function closeCallModal() { document.getElementById('call-modal').style.display = 'none'; }
-
 function openPaymentSelection() { document.getElementById('payment-selection-modal').style.display = 'flex'; }
 function closePaymentSelection() { document.getElementById('payment-selection-modal').style.display = 'none'; }
 function showVFCashPage() { closePaymentSelection(); document.getElementById('vfcash-modal').style.display = 'flex'; }
 function showOrangeCashPage() { closePaymentSelection(); document.getElementById('orange-cash-modal').style.display = 'flex'; }
 function closeVFCash() { document.getElementById('vfcash-modal').style.display = 'none'; }
 function closeOrangeCash() { document.getElementById('orange-cash-modal').style.display = 'none'; }
-
 function handleInstaPay() { window.location.href = "https://ipn.eg/S/torky23/instapay/1Qtkaq"; }
 
 function makeVFCashCall() {
@@ -294,13 +308,11 @@ function makeVFCashCall() {
     if(!amount) { alert("من فضلك اكتب المبلغ أولاً يا فندم"); return; }
     window.location.href = `tel:*9*7*01024486602*${amount}%23`;
 }
-
 function makeOrangeCashCall() {
     let amount = document.getElementById('orange-amount').value;
     if(!amount) { alert("من فضلك اكتب المبلغ أولاً يا فندم"); return; }
     window.location.href = `tel:%237115*7*${amount}*01206999546%23`;
 }
-
 function sendToWhatsApp() {
     const name = document.getElementById('user-name').value;
     const type = document.getElementById('session-type').value;
@@ -311,8 +323,9 @@ function sendToWhatsApp() {
     window.open(`https://wa.me/201024486602?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
+// الوظيفة المطلوبة لتحويل العميل للواتساب عند الضغط على أي باكدج
 function bookPackage(pkgName, pkgPrice) {
-    let msg = `استفسار عن باكدج تصوير:\nنوع الباكدج: ${pkgName}\nالسعر: ${pkgPrice}\nممكن تفاصيل أكتر؟`;
+    let msg = `أهلاً يا فندم، محتاج استفسر عن:\nبكدج: ${pkgName}\nالسعر: ${pkgPrice}`;
     window.open(`https://wa.me/201024486602?text=${encodeURIComponent(msg)}`, '_blank');
 }
 </script>
