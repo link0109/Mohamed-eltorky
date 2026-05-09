@@ -1,122 +1,262 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EL TORKY Photography</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <title>محمد التركي | EL TORKY Photography</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;500;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #d4af37; --glass: rgba(255, 255, 255, 0.08); }
-        body { margin: 0; font-family: 'Cairo', sans-serif; background: #000; color: #fff; }
-        .overlay { width: 100%; min-height: 100vh; padding: 40px 20px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; background: rgba(0,0,0,0.85); }
-        
-        .profile-pic { width: 130px; height: 130px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; margin-bottom: 15px; }
-        .brand-name { font-family: 'Cinzel', serif; font-size: 28px; letter-spacing: 2px; margin: 0; }
-        .brand-sub { color: var(--gold); font-size: 11px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; }
+        :root {
+            --bg-blur: rgba(255, 255, 255, 0.08);
+            --border-color: rgba(255, 255, 255, 0.2);
+            --gold: #d4af37;
+        }
 
-        .link-card { display: flex; align-items: center; background: var(--glass); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 12px; margin-bottom: 12px; width: 100%; max-width: 380px; text-decoration: none; color: #fff; cursor: pointer; transition: 0.3s; }
-        .link-card:hover { border-color: var(--gold); background: rgba(255,255,255,0.15); }
-        .link-card i { width: 40px; font-size: 20px; text-align: center; }
-        .link-card span { flex-grow: 1; text-align: center; font-weight: bold; }
+        body {
+            margin: 0;
+            font-family: 'Montserrat', 'Cairo', sans-serif;
+            background: #0f0f0f url('background.jpg') no-repeat center center/cover fixed;
+            display: flex; justify-content: center;
+        }
 
-        .packages-btn { background: rgba(212, 175, 55, 0.15); border: 1.5px solid var(--gold); }
+        .overlay {
+            backdrop-filter: blur(15px) saturate(160%);
+            -webkit-backdrop-filter: blur(15px) saturate(160%);
+            background: rgba(0, 0, 0, 0.7);
+            width: 100%; min-height: 100vh;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .profile {
+            width: 120px; height: 120px; border-radius: 50%;
+            object-fit: cover; border: 2px solid var(--gold); margin-bottom: 20px;
+        }
+
+        .brand-container { text-align: center; margin-bottom: 30px; }
+        .brand-name { font-family: 'Cinzel', serif; color: #fff; font-size: 32px; letter-spacing: 4px; text-transform: uppercase; margin: 0; }
+        .brand-sub { color: var(--gold); font-size: 11px; letter-spacing: 6px; text-transform: uppercase; margin-top: 5px; }
+
+        .button {
+            display: flex; align-items: center; background: var(--bg-blur);
+            border: 1px solid var(--border-color); color: white;
+            text-decoration: none; margin: 8px 0; width: 100%; max-width: 360px;
+            border-radius: 12px; padding: 6px; transition: 0.3s; cursor: pointer;
+        }
+
+        .icon-box { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 18px; color: #fff; }
+        .btn-text { flex-grow: 1; text-align: center; font-size: 15px; padding-right: 42px; }
+
+        .fb .icon-box { background: #1877F2; }
+        .ig .icon-box { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .tk .icon-box { background: #000; border: 1px solid rgba(255,255,255,0.2); }
+        .wa .icon-box { background: #25D366; }
+        .call .icon-box { background: #444; }
+        .vfcash .icon-box { background: var(--gold); color: #000; }
         
+        .packages-btn { border: 2px solid var(--gold); background: rgba(212, 175, 55, 0.15); margin-bottom: 10px; }
+
         #main-view, #packages-view { width: 100%; display: flex; flex-direction: column; align-items: center; }
         #packages-view { display: none; }
 
-        .package-card { width: 100%; max-width: 400px; background: #111; border-radius: 15px; padding: 20px; margin-bottom: 15px; border-right: 5px solid var(--gold); position: relative; }
-        .pkg-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .pkg-name { font-weight: bold; color: var(--gold); font-size: 18px; }
-        .pkg-price { background: var(--gold); color: #000; padding: 2px 12px; border-radius: 8px; font-weight: bold; }
-        .pkg-details { font-size: 13px; color: #ccc; line-height: 1.8; white-space: pre-line; }
+        .package-card { 
+            width: 100%; max-width: 380px; background: rgba(255,255,255,0.05); 
+            border-radius: 15px; padding: 15px; margin-bottom: 15px; 
+            border-right: 5px solid var(--gold); border: 1px solid var(--border-color);
+        }
+        .pkg-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .pkg-price { color: var(--gold); font-weight: bold; }
+        .pkg-desc { font-size: 12px; color: #ccc; line-height: 1.6; text-align: right; }
 
-        .back-btn { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 10px 30px; border-radius: 25px; cursor: pointer; margin-top: 20px; }
+        .footer-copyrights {
+            margin-top: auto; padding-top: 20px; text-align: center;
+            color: rgba(255, 255, 255, 0.4); font-size: 12px;
+            letter-spacing: 2px; font-family: 'Montserrat', sans-serif;
+        }
+
+        #booking-modal, #call-modal, #payment-selection-modal, #vfcash-modal, #orange-cash-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 5000; justify-content: center; align-items: center;
+        }
+        .modal-content { background: #1a1a1a; padding: 25px; border-radius: 20px; border: 1px solid var(--gold); width: 85%; max-width: 380px; text-align: right; color: white; }
+        
+        select, input { 
+            width: 100%; padding: 12px; margin-top: 10px; border-radius: 8px; 
+            background: #000; color: white; border: 1px solid #333; 
+            box-sizing: border-box; font-family: 'Cairo', sans-serif; font-size: 14px; outline: none;
+        }
+
+        .confirm-btn { background: var(--gold); color: #000; border: none; padding: 12px; width: 100%; border-radius: 10px; font-weight: bold; margin-top: 20px; cursor: pointer; }
+        .pay-option-btn { display: block; width: 100%; padding: 15px; margin: 12px 0; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; }
+        .vf-style { background: #e60000; color: white; }
+        .orange-style { background: #ff6600; color: white; }
+        .insta-style { background: white; color: black; }
     </style>
 </head>
 <body>
 
 <div class="overlay">
-    <img src="profile.jpg" alt="EL TORKY" class="profile-pic">
-    <h1 class="brand-name">EL TORKY</h1>
-    <p class="brand-sub">Professional Photographer</p>
-
-    <div id="main-view">
-        <div class="link-card packages-btn" onclick="showView('packages')">
-            <i class="fas fa-tags" style="color: var(--gold);"></i>
-            <span>الأسعار والبكدجات</span>
-        </div>
-
-        <div class="link-card" style="border: 1px solid #fff;" onclick="window.open('https://wa.me/201024486602')">
-            <i class="fas fa-calendar-alt"></i>
-            <span>احجز الآن | Book Now</span>
-        </div>
-
-        <a href="https://wa.me/201024486602" class="link-card">
-            <i class="fab fa-whatsapp" style="color: #25D366;"></i>
-            <span>واتساب</span>
-        </a>
-
-        <a href="https://www.facebook.com/share/187a3beKHT/" class="link-card">
-            <i class="fab fa-facebook" style="color: #1877F2;"></i>
-            <span>فيسبوك بروفايل</span>
-        </a>
-
-        <a href="https://www.instagram.com/el_torky_photography" class="link-card">
-            <i class="fab fa-instagram" style="color: #E1306C;"></i>
-            <span>إنستجرام</span>
-        </a>
+    <img src="profile.jpg" class="profile" alt="EL TORKY">
+    <div class="brand-container">
+        <h1 class="brand-name">EL TORKY</h1>
+        <div class="brand-sub">Professional Photographer</div>
     </div>
 
+    <div id="main-view">
+        <!-- زر الباكدجات الجديد -->
+        <div class="button packages-btn" onclick="showPackages()">
+            <div class="icon-box" style="background:var(--gold); color:black;"><i class="fas fa-tags"></i></div>
+            <div class="btn-text">الأسعار والبكدجات | Prices</div>
+        </div>
+
+        <div class="button" style="border-color: #fff;" onclick="openBooking()">
+            <div class="icon-box" style="background:#fff; color:black;"><i class="fas fa-calendar-check"></i></div>
+            <div class="btn-text">احجز الآن | Book Now</div>
+        </div>
+
+        <a class="button fb" href="https://www.facebook.com/share/187a3beKHT/" target="_blank">
+            <div class="icon-box"><i class="fas fa-user-circle"></i></div><div class="btn-text">Personal Profile</div>
+        </a>
+
+        <a class="button ig" href="https://www.instagram.com/el_torky_photography" target="_blank">
+            <div class="icon-box"><i class="fab fa-instagram"></i></div><div class="btn-text">Instagram</div>
+        </a>
+
+        <a class="button tk" href="https://www.tiktok.com/@eltorky23" target="_blank">
+            <div class="icon-box"><i class="fab fa-tiktok"></i></div><div class="btn-text">TikTok</div>
+        </a>
+
+        <a class="button wa" href="https://wa.me/201024486602" target="_blank">
+            <div class="icon-box"><i class="fab fa-whatsapp"></i></div><div class="btn-text">WhatsApp</div>
+        </a>
+
+        <div class="button call" onclick="openCallModal()">
+            <div class="icon-box"><i class="fas fa-phone-alt"></i></div><div class="btn-text">اتصل بنا | Call Me</div>
+        </div>
+
+        <div class="button vfcash" onclick="openPaymentSelection()">
+            <div class="icon-box"><i class="fas fa-money-bill-wave"></i></div><div class="btn-text">تحويل المبلغ | Transfer</div>
+        </div>
+    </div>
+
+    <!-- قسم الباكدجات -->
     <div id="packages-view">
-        <h2 style="color: var(--gold);">WEDDING PACKAGES 2026</h2>
-
+        <h3 style="color: var(--gold); margin-bottom: 20px;">WEDDING PACKAGES 2026</h3>
+        
         <div class="package-card">
-            <div class="pkg-header">
-                <span class="pkg-name">VIP FULL DAY</span>
-                <span class="pkg-price">12,000 LE</span>
-            </div>
-            <div class="pkg-details">سيشن كاجوال + سيشن حنة + سيشن زفاف + فيديو ريلز + ألبوم مقاس 30*80 + تابلوه 50*70 + ساعة حائط بصورتكم + فلاشة عليها كل الصور</div>
+            <div class="pkg-header"><span style="font-weight:bold;">VIP FULL DAY</span><span class="pkg-price">12,000 LE</span></div>
+            <div class="pkg-desc">سيشن كاجوال + سيشن حنة + سيشن زفاف + فيديو ريلز + ألبوم مقاس 30*80 + تابلوه 50*70 + ساعة حائط بصورتكم + فلاشة عليها كل الصور</div>
         </div>
 
         <div class="package-card">
-            <div class="pkg-header">
-                <span class="pkg-name">VIP PACKAGE</span>
-                <span class="pkg-price">6,500 LE</span>
-            </div>
-            <div class="pkg-details">سيشن زفاف + قاعة + فيديو ريلز + ألبوم مقاس 30*80 + برواز 50*70 + 2 تابلوه مقاس 20*30</div>
+            <div class="pkg-header"><span style="font-weight:bold;">VIP PACKAGE</span><span class="pkg-price">6,500 LE</span></div>
+            <div class="pkg-desc">سيشن زفاف + قاعة + فيديو ريلز + ألبوم مقاس 30*80 + برواز 50*70 + 2 تابلوه مقاس 20*30</div>
         </div>
 
         <div class="package-card">
-            <div class="pkg-header">
-                <span class="pkg-name">STANDARD</span>
-                <span class="pkg-price">4,200 LE</span>
-            </div>
-            <div class="pkg-details">سيشن زفاف + سيشن حنة + ألبوم مقاس 30*45 + تابلوه 40*60 + 2 برواز صغير</div>
+            <div class="pkg-header"><span style="font-weight:bold;">STANDARD</span><span class="pkg-price">4,200 LE</span></div>
+            <div class="pkg-desc">سيشن زفاف + سيشن حنة + ألبوم مقاس 30*45 + تابلوه 40*60 + 2 برواز صغير</div>
         </div>
 
-        <div class="package-card">
-            <div class="pkg-header">
-                <span class="pkg-name">BASIC</span>
-                <span class="pkg-price">3,000 LE</span>
-            </div>
-            <div class="pkg-details">سيشن زفاف (فقط) + ألبوم مقاس 30*45 + تابلوه خشب مقاس 40*60</div>
-        </div>
+        <button class="confirm-btn" onclick="showMain()" style="background:none; color:var(--gold); border:1px solid var(--gold); width:auto; padding:10px 30px;">العودة للرئيسية</button>
+    </div>
 
-        <button class="back-btn" onclick="showView('main')">العودة للرئيسية</button>
+    <div class="footer-copyrights">© EL TORKY Photographer</div>
+</div>
+
+<!-- Modals -->
+<div id="booking-modal">
+    <div class="modal-content">
+        <h3 style="text-align:center; color:var(--gold);">تفاصيل الحجز</h3>
+        <label>المناسبة:</label>
+        <select id="session-type">
+            <option value="" disabled selected>اختيار المناسبة</option>
+            <option value="سيشن زفاف">سيشن زفاف</option>
+            <option value="سيشن خطوبة">سيشن خطوبة</option>
+            <option value="كتب كتاب">كتب كتاب</option>
+        </select>
+        <input type="date" id="session-date">
+        <input type="text" id="user-name" placeholder="الاسم بالكامل">
+        <button class="confirm-btn" onclick="sendToWhatsApp()">تأكيد عبر واتساب</button>
+        <p onclick="closeBooking()" style="text-align:center; color:#888; cursor:pointer;">إغلاق</p>
+    </div>
+</div>
+
+<div id="payment-selection-modal">
+    <div class="modal-content" style="text-align:center;">
+        <h3 style="color:var(--gold);">وسيلة التحويل</h3>
+        <button class="pay-option-btn vf-style" onclick="showVFCashPage()">فودافون كاش</button>
+        <button class="pay-option-btn orange-style" onclick="showOrangeCashPage()">أورنج كاش</button>
+        <button class="pay-option-btn insta-style" onclick="handleInstaPay()">إنستا باي</button>
+        <p onclick="closePaymentSelection()" style="color:#888; cursor:pointer;">إغلاق</p>
+    </div>
+</div>
+
+<div id="call-modal">
+    <div class="modal-content" style="text-align:center;">
+        <h3>اتصل بنا</h3>
+        <a href="tel:01024486602" style="display:block; background:#e60000; padding:15px; color:white; border-radius:10px; text-decoration:none; margin:10px 0;">01024486602</a>
+        <a href="tel:01206999546" style="display:block; background:#FF6600; padding:15px; color:white; border-radius:10px; text-decoration:none; margin:10px 0;">01206999546</a>
+        <p onclick="closeCallModal()" style="color:#888; cursor:pointer;">إغلاق</p>
+    </div>
+</div>
+
+<div id="vfcash-modal">
+    <div class="modal-content" style="text-align:center;">
+        <h3>فودافون كاش</h3>
+        <input type="number" id="cash-amount" placeholder="المبلغ">
+        <button class="confirm-btn" onclick="makeVFCashCall()" style="background:#e60000; color:white;">تحويل الآن</button>
+        <p onclick="closeVFCash()" style="color:#888; cursor:pointer;">إغلاق</p>
+    </div>
+</div>
+
+<div id="orange-cash-modal">
+    <div class="modal-content" style="text-align:center;">
+        <h3>أورنج كاش</h3>
+        <input type="number" id="orange-amount" placeholder="المبلغ">
+        <button class="confirm-btn" onclick="makeOrangeCashCall()" style="background:#ff6600; color:white;">تحويل الآن</button>
+        <p onclick="closeOrangeCash()" style="color:#888; cursor:pointer;">إغلاق</p>
     </div>
 </div>
 
 <script>
-    function showView(view) {
-        if(view === 'packages') {
-            document.getElementById('main-view').style.display = 'none';
-            document.getElementById('packages-view').style.display = 'flex';
-        } else {
-            document.getElementById('packages-content' ? 'packages-view' : '').style.display = 'none';
-            document.getElementById('main-view').style.display = 'flex';
-        }
-    }
+function showPackages() { document.getElementById('main-view').style.display='none'; document.getElementById('packages-view').style.display='flex'; }
+function showMain() { document.getElementById('packages-view').style.display='none'; document.getElementById('main-view').style.display='flex'; }
+function openBooking() { document.getElementById('booking-modal').style.display = 'flex'; }
+function closeBooking() { document.getElementById('booking-modal').style.display = 'none'; }
+function openCallModal() { document.getElementById('call-modal').style.display = 'flex'; }
+function closeCallModal() { document.getElementById('call-modal').style.display = 'none'; }
+function openPaymentSelection() { document.getElementById('payment-selection-modal').style.display = 'flex'; }
+function closePaymentSelection() { document.getElementById('payment-selection-modal').style.display = 'none'; }
+function showVFCashPage() { closePaymentSelection(); document.getElementById('vfcash-modal').style.display = 'flex'; }
+function showOrangeCashPage() { closePaymentSelection(); document.getElementById('orange-cash-modal').style.display = 'flex'; }
+function closeOrangeCash() { document.getElementById('orange-cash-modal').style.display = 'none'; }
+function closeVFCash() { document.getElementById('vfcash-modal').style.display = 'none'; }
+
+function handleInstaPay() { window.location.href = "https://ipn.eg/S/torky23/instapay/1Qtkaq"; }
+
+function sendToWhatsApp() {
+    const name = document.getElementById('user-name').value;
+    const type = document.getElementById('session-type').value;
+    const date = document.getElementById('session-date').value;
+    if(!name || !type || !date) { alert("أكمل البيانات يا فندم"); return; }
+    let msg = `حجز جديد لمحمد التركي:\nالاسم: ${name}\nالمناسبة: ${type}\nالتاريخ: ${date}`;
+    window.open(`https://wa.me/201024486602?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function makeVFCashCall() {
+    let amount = document.getElementById('cash-amount').value;
+    if(!amount) return;
+    window.location.href = `tel:*9*7*01024486602*${amount}%23`;
+}
+
+function makeOrangeCashCall() {
+    let amount = document.getElementById('orange-amount').value;
+    if(!amount) return;
+    window.location.href = `tel:%237115*7*${amount}*01206999546%23`;
+}
 </script>
 </body>
 </html>
