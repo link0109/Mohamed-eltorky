@@ -46,7 +46,11 @@
         .btn-text { flex-grow: 1; text-align: center; font-size: 15px; padding-right: 42px; }
 
         .fb .icon-box { background: #1877F2; }
+        .ig .icon-box { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .tk .icon-box { background: #000; border: 1px solid rgba(255,255,255,0.2); }
         .wa .icon-box { background: #25D366; }
+        .call .icon-box { background: #444; }
+        .vfcash .icon-box { background: var(--gold); color: #000; }
         
         #main-view, #packages-view { width: 100%; display: flex; flex-direction: column; align-items: center; }
         #packages-view { display: none; }
@@ -77,7 +81,7 @@
             padding: 15px; border-radius: 12px; margin: 20px 0; background: rgba(212, 175, 55, 0.05);
         }
 
-        .confirm-btn { background: var(--gold); color: #000; border: none; padding: 12px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        .confirm-btn { background: var(--gold); color: #000; border: none; padding: 12px; width: 100%; border-radius: 10px; font-weight: bold; margin-top: 20px; cursor: pointer; }
         .footer-copyrights { margin-top: auto; padding: 30px 0; text-align: center; color: rgba(255, 255, 255, 0.4); font-size: 12px; letter-spacing: 2px; }
     </style>
 </head>
@@ -96,17 +100,41 @@
             <div class="btn-text">الأسعار والبكدجات | Prices</div>
         </div>
 
+        <div class="button" style="border: 2px solid #fff;" onclick="window.open('https://wa.me/201024486602', '_blank')">
+            <div class="icon-box" style="background:#fff; color:black;"><i class="fas fa-calendar-check"></i></div>
+            <div class="btn-text">احجز الآن | Book Now</div>
+        </div>
+
         <a class="button fb" href="https://www.facebook.com/share/1dk5VXaDCu/?mibextid=wwXIfr" target="_blank">
             <div class="icon-box"><i class="fab fa-facebook-f"></i></div><div class="btn-text">Facebook Page</div>
+        </a>
+
+        <a class="button fb" href="https://www.facebook.com/share/187a3beKHT/" target="_blank">
+            <div class="icon-box"><i class="fas fa-user-circle"></i></div><div class="btn-text">Personal Profile</div>
+        </a>
+
+        <a class="button ig" href="https://www.instagram.com/el_torky_photography" target="_blank">
+            <div class="icon-box"><i class="fab fa-instagram"></i></div><div class="btn-text">Instagram</div>
+        </a>
+
+        <a class="button tk" href="https://www.tiktok.com/@eltorky23" target="_blank">
+            <div class="icon-box"><i class="fab fa-tiktok"></i></div><div class="btn-text">TikTok</div>
         </a>
 
         <a class="button wa" href="https://wa.me/201024486602" target="_blank">
             <div class="icon-box"><i class="fab fa-whatsapp"></i></div><div class="btn-text">WhatsApp</div>
         </a>
+
+        <div class="button call" onclick="window.location.href='tel:01024486602'">
+            <div class="icon-box"><i class="fas fa-phone-alt"></i></div><div class="btn-text">اتصل بنا | Call Me</div>
+        </div>
+
+        <div class="button vfcash" onclick="window.open('https://wa.me/201024486602?text=محتاج+أحول+مبلغ+عربون', '_blank')">
+            <div class="icon-box"><i class="fas fa-money-bill-wave"></i></div><div class="btn-text">تحويل المبلغ | Transfer</div>
+        </div>
     </div>
 
     <div id="packages-view">
-        <!-- بكدجات الزفاف -->
         <div class="section-title">WEDDING PACKAGES</div>
         <div class="package-card" onclick="bookItem('VIP FULL DAY', '12,000 LE')">
             <div class="pkg-header"><span class="pkg-name">VIP FULL DAY</span><span class="pkg-price">12,000 LE</span></div>
@@ -116,8 +144,15 @@
             <div class="pkg-header"><span class="pkg-name">VIP WEDDING</span><span class="pkg-price">6,500 LE</span></div>
             <div class="pkg-desc">سيشن وقاعة وريلز وألبومات وهدايا</div>
         </div>
+        <div class="package-card" onclick="bookItem('STANDARD WEDDING', '4,200 LE')">
+            <div class="pkg-header"><span class="pkg-name">STANDARD WEDDING</span><span class="pkg-price">4,200 LE</span></div>
+            <div class="pkg-desc">سيشن وحنة وألبوم وهدايا</div>
+        </div>
+        <div class="package-card" onclick="bookItem('BASIC WEDDING', '3,000 LE')">
+            <div class="pkg-header"><span class="pkg-name">BASIC WEDDING</span><span class="pkg-price">3,000 LE</span></div>
+            <div class="pkg-desc">سيشن وألبوم وتابلوه</div>
+        </div>
 
-        <!-- الخطوبة والحنة -->
         <div class="section-title">الخطوبة / الحنة / كتب الكتاب</div>
         <div class="package-card" onclick="bookItem('VIP PACKAGE', '3,700 LE')">
             <div class="pkg-header"><span class="pkg-name">VIP PACKAGE</span><span class="pkg-price">3,700 LE</span></div>
@@ -132,7 +167,6 @@
             <div class="pkg-desc">تصوير السيشن + ألبوم 30*45</div>
         </div>
 
-        <!-- جلسات التصوير -->
         <div class="sessions-container">
             <div class="sessions-title">SESSIONS | جلسات التصوير</div>
             <div class="session-item" onclick="bookItem('سيشن زفاف', '2,000 LE')">. سيشن زفاف: <b>2,000 LE</b></div>
@@ -142,7 +176,6 @@
             <div class="session-item" onclick="bookItem('تصوير حفلة', '1,300 LE')">. تصوير حفلة (كتب كتاب/حنة/خطوبة): <b>1,300 LE</b></div>
         </div>
 
-        <!-- الملاحظات -->
         <div class="notes-box">
             <h4 style="color: var(--gold); margin: 0 0 10px 0;">ملاحظات | NOTES</h4>
             <ul style="color: #eee; font-size: 13px; padding-right: 20px; margin: 0; line-height: 1.6;">
@@ -153,7 +186,7 @@
             </ul>
         </div>
 
-        <button class="confirm-btn" onclick="showMain()" style="background:none; color:var(--gold); border:1px solid var(--gold); width:auto; padding:10px 40px; margin-bottom: 40px;">العودة</button>
+        <button class="confirm-btn" onclick="showMain()" style="background:none; color:var(--gold); border:1px solid var(--gold); width:auto; padding:10px 40px; margin-bottom: 40px;">العودة للرئيسية</button>
     </div>
 
     <div class="footer-copyrights">© EL TORKY Photographer</div>
