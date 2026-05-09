@@ -81,7 +81,15 @@
             padding: 15px; border-radius: 12px; margin: 20px 0; background: rgba(212, 175, 55, 0.05);
         }
 
-        .confirm-btn { background: var(--gold); color: #000; border: none; padding: 12px; width: 100%; border-radius: 10px; font-weight: bold; margin-top: 20px; cursor: pointer; }
+        /* مودال الدفع */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 5000; justify-content: center; align-items: center;
+        }
+        .modal-content { background: #1a1a1a; padding: 25px; border-radius: 20px; border: 1px solid var(--gold); width: 85%; max-width: 380px; text-align: center; color: white; }
+        .payment-option { background: var(--bg-blur); border: 1px solid var(--border-color); padding: 15px; margin: 10px 0; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
+        .copy-btn { background: var(--gold); color: black; border: none; padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer; }
+
         .footer-copyrights { margin-top: auto; padding: 30px 0; text-align: center; color: rgba(255, 255, 255, 0.4); font-size: 12px; letter-spacing: 2px; }
     </style>
 </head>
@@ -98,11 +106,6 @@
         <div class="button" style="border: 2px solid var(--gold);" onclick="showPackages()">
             <div class="icon-box" style="background:var(--gold); color:black;"><i class="fas fa-tags"></i></div>
             <div class="btn-text">الأسعار والبكدجات | Prices</div>
-        </div>
-
-        <div class="button" style="border: 2px solid #fff;" onclick="window.open('https://wa.me/201024486602', '_blank')">
-            <div class="icon-box" style="background:#fff; color:black;"><i class="fas fa-calendar-check"></i></div>
-            <div class="btn-text">احجز الآن | Book Now</div>
         </div>
 
         <a class="button fb" href="https://www.facebook.com/share/1dk5VXaDCu/?mibextid=wwXIfr" target="_blank">
@@ -129,7 +132,7 @@
             <div class="icon-box"><i class="fas fa-phone-alt"></i></div><div class="btn-text">اتصل بنا | Call Me</div>
         </div>
 
-        <div class="button vfcash" onclick="window.open('https://wa.me/201024486602?text=محتاج+أحول+مبلغ+عربون', '_blank')">
+        <div class="button vfcash" onclick="openPaymentModal()">
             <div class="icon-box"><i class="fas fa-money-bill-wave"></i></div><div class="btn-text">تحويل المبلغ | Transfer</div>
         </div>
     </div>
@@ -144,14 +147,6 @@
             <div class="pkg-header"><span class="pkg-name">VIP WEDDING</span><span class="pkg-price">6,500 LE</span></div>
             <div class="pkg-desc">سيشن وقاعة وريلز وألبومات وهدايا</div>
         </div>
-        <div class="package-card" onclick="bookItem('STANDARD WEDDING', '4,200 LE')">
-            <div class="pkg-header"><span class="pkg-name">STANDARD WEDDING</span><span class="pkg-price">4,200 LE</span></div>
-            <div class="pkg-desc">سيشن وحنة وألبوم وهدايا</div>
-        </div>
-        <div class="package-card" onclick="bookItem('BASIC WEDDING', '3,000 LE')">
-            <div class="pkg-header"><span class="pkg-name">BASIC WEDDING</span><span class="pkg-price">3,000 LE</span></div>
-            <div class="pkg-desc">سيشن وألبوم وتابلوه</div>
-        </div>
 
         <div class="section-title">الخطوبة / الحنة / كتب الكتاب</div>
         <div class="package-card" onclick="bookItem('VIP PACKAGE', '3,700 LE')">
@@ -162,31 +157,39 @@
             <div class="pkg-header"><span class="pkg-name">STANDARD</span><span class="pkg-price">2,800 LE</span></div>
             <div class="pkg-desc">تصوير السيشن + تصوير الحفلة</div>
         </div>
-        <div class="package-card" onclick="bookItem('BASIC', '2,200 LE')">
-            <div class="pkg-header"><span class="pkg-name">BASIC</span><span class="pkg-price">2,200 LE</span></div>
-            <div class="pkg-desc">تصوير السيشن + ألبوم 30*45</div>
-        </div>
 
         <div class="sessions-container">
             <div class="sessions-title">SESSIONS | جلسات التصوير</div>
             <div class="session-item" onclick="bookItem('سيشن زفاف', '2,000 LE')">. سيشن زفاف: <b>2,000 LE</b></div>
             <div class="session-item" onclick="bookItem('سيشن خطوبة', '1,700 LE')">. سيشن خطوبة: <b>1,700 LE</b></div>
             <div class="session-item" onclick="bookItem('سيشن كاجوال/كتب كتاب', '1,500 LE')">. سيشن كاجوال / كتب كتاب: <b>1,500 LE</b></div>
-            <div class="session-item" onclick="bookItem('تصوير قاعة', '1,700 LE')">. تصوير قاعة (عدد صور غير محدود): <b>1,700 LE</b></div>
-            <div class="session-item" onclick="bookItem('تصوير حفلة', '1,300 LE')">. تصوير حفلة (كتب كتاب/حنة/خطوبة): <b>1,300 LE</b></div>
         </div>
 
-        <div class="notes-box">
-            <h4 style="color: var(--gold); margin: 0 0 10px 0;">ملاحظات | NOTES</h4>
-            <ul style="color: #eee; font-size: 13px; padding-right: 20px; margin: 0; line-height: 1.6;">
-                <li>جميع البكدجات مقدم حجز 1000 ج (ماعدا VIP Full Day مقدم 5000 ج).</li>
-                <li>يتم دفع العربون في الاستوديو أو عبر فودافون كاش.</li>
-                <li>تسديد باقي الحساب كحد أقصى يوم المناسبة.</li>
-                <li>التسليم خلال 21 إلى 28 يوم كحد أقصى.</li>
-            </ul>
-        </div>
+        <button class="confirm-btn" onclick="showMain()" style="background:none; color:var(--gold); border:1px solid var(--gold); width:auto; padding:10px 40px; margin: 30px 0;">العودة</button>
+    </div>
 
-        <button class="confirm-btn" onclick="showMain()" style="background:none; color:var(--gold); border:1px solid var(--gold); width:auto; padding:10px 40px; margin-bottom: 40px;">العودة للرئيسية</button>
+    <!-- مودال خيارات الدفع -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <h3 style="color:var(--gold)">اختر وسيلة الدفع</h3>
+            
+            <div class="payment-option">
+                <span>فودافون كاش: 01024486602</span>
+                <button class="copy-btn" onclick="copyText('01024486602')">نسخ</button>
+            </div>
+
+            <div class="payment-option">
+                <span>أورنج كاش: 01221193309</span>
+                <button class="copy-btn" onclick="copyText('01221193309')">نسخ</button>
+            </div>
+
+            <div class="payment-option">
+                <span>InstaPay: el.torky@instapay</span>
+                <button class="copy-btn" onclick="copyText('el.torky@instapay')">نسخ</button>
+            </div>
+
+            <button onclick="closePaymentModal()" style="margin-top:20px; background:none; color:white; border:1px solid #444; padding:8px 20px; border-radius:10px;">إغلاق</button>
+        </div>
     </div>
 
     <div class="footer-copyrights">© EL TORKY Photographer</div>
@@ -195,6 +198,14 @@
 <script>
 function showPackages() { document.getElementById('main-view').style.display='none'; document.getElementById('packages-view').style.display='flex'; window.scrollTo(0,0); }
 function showMain() { document.getElementById('packages-view').style.display='none'; document.getElementById('main-view').style.display='flex'; }
+function openPaymentModal() { document.getElementById('payment-modal').style.display='flex'; }
+function closePaymentModal() { document.getElementById('payment-modal').style.display='none'; }
+
+function copyText(text) {
+    navigator.clipboard.writeText(text);
+    alert("تم نسخ الرقم: " + text);
+}
+
 function bookItem(name, price) {
     let msg = `استفسار عن حجز:\nالنوع: ${name}\nالسعر: ${price}`;
     window.open(`https://wa.me/201024486602?text=${encodeURIComponent(msg)}`, '_blank');
