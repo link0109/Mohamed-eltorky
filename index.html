@@ -4,191 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EL TORKY Photography</title>
-    <!-- الروابط الخارجية للخطوط والأيقونات -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <style>
-        :root { 
-            --gold: #d4af37; 
-            --dark-bg: #0a0a0a;
-            --glass: rgba(255, 255, 255, 0.05);
-        }
+        :root { --gold: #d4af37; --glass: rgba(255, 255, 255, 0.08); }
+        body { margin: 0; font-family: 'Cairo', sans-serif; background: #000; color: #fff; }
+        .overlay { width: 100%; min-height: 100vh; padding: 40px 20px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; background: rgba(0,0,0,0.85); }
+        
+        .profile-pic { width: 130px; height: 130px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; margin-bottom: 15px; }
+        .brand-name { font-family: 'Cinzel', serif; font-size: 28px; letter-spacing: 2px; margin: 0; }
+        .brand-sub { color: var(--gold); font-size: 11px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; }
 
-        body { 
-            margin: 0; 
-            font-family: 'Cairo', sans-serif; 
-            background: #000 url('background.jpg') no-repeat center center/cover fixed; 
-            color: #fff; 
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
-        }
+        .link-card { display: flex; align-items: center; background: var(--glass); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 12px; margin-bottom: 12px; width: 100%; max-width: 380px; text-decoration: none; color: #fff; cursor: pointer; transition: 0.3s; }
+        .link-card:hover { border-color: var(--gold); background: rgba(255,255,255,0.15); }
+        .link-card i { width: 40px; font-size: 20px; text-align: center; }
+        .link-card span { flex-grow: 1; text-align: center; font-weight: bold; }
 
-        .overlay {
-            width: 100%;
-            max-width: 450px;
-            padding: 40px 20px;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            min-height: 100vh;
-        }
+        .packages-btn { background: rgba(212, 175, 55, 0.15); border: 1.5px solid var(--gold); }
+        
+        #main-view, #packages-view { width: 100%; display: flex; flex-direction: column; align-items: center; }
+        #packages-view { display: none; }
 
-        /* صورة البروفايل بالامتداد الجديد jpg */
-        .profile-pic {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            border: 2px solid var(--gold);
-            object-fit: cover;
-            margin-bottom: 15px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-        }
+        .package-card { width: 100%; max-width: 400px; background: #111; border-radius: 15px; padding: 20px; margin-bottom: 15px; border-right: 5px solid var(--gold); position: relative; }
+        .pkg-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .pkg-name { font-weight: bold; color: var(--gold); font-size: 18px; }
+        .pkg-price { background: var(--gold); color: #000; padding: 2px 12px; border-radius: 8px; font-weight: bold; }
+        .pkg-details { font-size: 13px; color: #ccc; line-height: 1.8; white-space: pre-line; }
 
-        .brand-title {
-            font-family: 'Cinzel', serif;
-            font-size: 28px;
-            margin: 5px 0;
-            letter-spacing: 2px;
-        }
-
-        .brand-sub {
-            color: var(--gold);
-            font-size: 12px;
-            letter-spacing: 4px;
-            margin-bottom: 35px;
-            text-transform: uppercase;
-        }
-
-        /* تنسيق الأزرار */
-        .link-card {
-            display: flex;
-            align-items: center;
-            background: var(--glass);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 12px 15px;
-            margin-bottom: 12px;
-            text-decoration: none;
-            color: #fff;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .link-card:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: var(--gold);
-        }
-
-        .link-card i {
-            width: 35px;
-            font-size: 20px;
-            text-align: center;
-        }
-
-        .link-card span {
-            flex-grow: 1;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        /* تمييز زر الباقات وزر الحجز */
-        .packages-btn {
-            background: rgba(212, 175, 55, 0.2);
-            border: 2px solid var(--gold);
-        }
-        .booking-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid #fff;
-        }
-
-        /* التحكم في عرض الأقسام */
-        #main-content, #packages-content { width: 100%; }
-        #packages-content { display: none; }
-
-        /* كروت الباقات */
-        .package-item {
-            background: #111;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-right: 4px solid var(--gold);
-            text-align: right;
-            position: relative;
-        }
-
-        .package-name { color: var(--gold); font-weight: bold; font-size: 18px; margin-bottom: 5px; }
-        .package-price { float: left; font-size: 16px; background: var(--gold); color: #000; padding: 2px 10px; border-radius: 5px; font-weight: bold; }
-        .package-desc { font-size: 13px; color: #aaa; clear: both; padding-top: 10px; line-height: 1.6; }
-
-        .back-btn {
-            background: none;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 10px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            margin-top: 20px;
-            font-family: 'Cairo';
-        }
-
-        /* Modal simple style */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background: #1a1a1a;
-            padding: 25px;
-            border-radius: 20px;
-            width: 85%;
-            max-width: 350px;
-            border: 1px solid var(--gold);
-        }
-        input, select {
-            width: 100%; padding: 12px; margin: 10px 0;
-            border-radius: 10px; border: 1px solid #333;
-            background: #000; color: #fff; font-family: 'Cairo';
-        }
-        .confirm-btn {
-            background: var(--gold); color: #000; border: none;
-            padding: 12px; width: 100%; border-radius: 10px;
-            font-weight: bold; cursor: pointer;
-        }
+        .back-btn { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 10px 30px; border-radius: 25px; cursor: pointer; margin-top: 20px; }
     </style>
 </head>
 <body>
 
 <div class="overlay">
-    <!-- صورة البروفايل بالامتداد المطلوب .jpg -->
     <img src="profile.jpg" alt="EL TORKY" class="profile-pic">
+    <h1 class="brand-name">EL TORKY</h1>
+    <p class="brand-sub">Professional Photographer</p>
 
-    <div class="brand-title">EL TORKY</div>
-    <div class="brand-sub">Photography</div>
-
-    <!-- القسم الرئيسي -->
-    <div id="main-content">
-        <!-- زر الباقات أول زرار كما طلبت -->
-        <div class="link-card packages-btn" onclick="showPackages()">
+    <div id="main-view">
+        <div class="link-card packages-btn" onclick="showView('packages')">
             <i class="fas fa-tags" style="color: var(--gold);"></i>
             <span>الأسعار والبكدجات</span>
         </div>
 
-        <!-- زر احجز الآن بعده مباشرة -->
-        <div class="link-card booking-btn" onclick="openBooking()">
-            <i class="fas fa-calendar-check"></i>
+        <div class="link-card" style="border: 1px solid #fff;" onclick="window.open('https://wa.me/201024486602')">
+            <i class="fas fa-calendar-alt"></i>
             <span>احجز الآن | Book Now</span>
         </div>
 
         <a href="https://wa.me/201024486602" class="link-card">
             <i class="fab fa-whatsapp" style="color: #25D366;"></i>
-            <span>تواصل عبر واتساب</span>
+            <span>واتساب</span>
         </a>
 
         <a href="https://www.facebook.com/share/187a3beKHT/" class="link-card">
@@ -202,84 +68,55 @@
         </a>
     </div>
 
-    <!-- قسم الباقات -->
-    <div id="packages-content">
-        <h3 style="color: var(--gold); margin-bottom: 25px;">باقات وعروض 2026</h3>
-        
-        <div class="package-item">
-            <span class="package-price">12,000 LE</span>
-            <div class="package-name">VIP FULL DAY</div>
-            <div class="package-desc">كاجوال + حنة + زفاف + ريلز + ألبوم 30*80 + تابلوه + فلاشة</div>
+    <div id="packages-view">
+        <h2 style="color: var(--gold);">WEDDING PACKAGES 2026</h2>
+
+        <div class="package-card">
+            <div class="pkg-header">
+                <span class="pkg-name">VIP FULL DAY</span>
+                <span class="pkg-price">12,000 LE</span>
+            </div>
+            <div class="pkg-details">سيشن كاجوال + سيشن حنة + سيشن زفاف + فيديو ريلز + ألبوم مقاس 30*80 + تابلوه 50*70 + ساعة حائط بصورتكم + فلاشة عليها كل الصور</div>
         </div>
 
-        <div class="package-item">
-            <span class="package-price">6,500 LE</span>
-            <div class="package-name">VIP PACKAGE</div>
-            <div class="package-desc">سيشن + قاعة + ريلز + ألبوم 30*80 + برواز + 2 تابلوه</div>
+        <div class="package-card">
+            <div class="pkg-header">
+                <span class="pkg-name">VIP PACKAGE</span>
+                <span class="pkg-price">6,500 LE</span>
+            </div>
+            <div class="pkg-details">سيشن زفاف + قاعة + فيديو ريلز + ألبوم مقاس 30*80 + برواز 50*70 + 2 تابلوه مقاس 20*30</div>
         </div>
 
-        <div class="package-item">
-            <span class="package-price">4,200 LE</span>
-            <div class="package-name">STANDARD</div>
-            <div class="package-desc">سيشن + حنة + ألبوم 30*45 + تابلوه + 2 برواز</div>
+        <div class="package-card">
+            <div class="pkg-header">
+                <span class="pkg-name">STANDARD</span>
+                <span class="pkg-price">4,200 LE</span>
+            </div>
+            <div class="pkg-details">سيشن زفاف + سيشن حنة + ألبوم مقاس 30*45 + تابلوه 40*60 + 2 برواز صغير</div>
         </div>
 
-        <button class="back-btn" onclick="showMain()">العودة للرئيسية</button>
-    </div>
-</div>
+        <div class="package-card">
+            <div class="pkg-header">
+                <span class="pkg-name">BASIC</span>
+                <span class="pkg-price">3,000 LE</span>
+            </div>
+            <div class="pkg-details">سيشن زفاف (فقط) + ألبوم مقاس 30*45 + تابلوه خشب مقاس 40*60</div>
+        </div>
 
-<!-- مودال الحجز -->
-<div id="booking-modal" class="modal">
-    <div class="modal-content">
-        <h3 style="text-align:center; color:var(--gold); margin-top:0;">بيانات الحجز</h3>
-        <input type="text" id="cust-name" placeholder="الاسم بالكامل">
-        <select id="event-type">
-            <option value="" disabled selected>نوع المناسبة</option>
-            <option value="زفاف">زفاف</option>
-            <option value="خطوبة">خطوبة</option>
-            <option value="كتب كتاب">كتب كتاب</option>
-            <option value="سيشن خارجي">سيشن خارجي</option>
-        </select>
-        <input type="date" id="event-date">
-        <button class="confirm-btn" onclick="sendWhatsApp()">تأكيد الحجز</button>
-        <p onclick="closeBooking()" style="text-align:center; color:#888; cursor:pointer; margin-top:15px; font-size:14px;">إلغاء</p>
+        <button class="back-btn" onclick="showView('main')">العودة للرئيسية</button>
     </div>
 </div>
 
 <script>
-    function showPackages() {
-        document.getElementById('main-content').style.display = 'none';
-        document.getElementById('packages-content').style.display = 'block';
-    }
-
-    function showMain() {
-        document.getElementById('packages-content').style.display = 'none';
-        document.getElementById('main-content').style.display = 'block';
-    }
-
-    function openBooking() {
-        document.getElementById('booking-modal').style.display = 'flex';
-    }
-
-    function closeBooking() {
-        document.getElementById('booking-modal').style.display = 'none';
-    }
-
-    function sendWhatsApp() {
-        const name = document.getElementById('cust-name').value;
-        const type = document.getElementById('event-type').value;
-        const date = document.getElementById('event-date').value;
-        
-        if(!name || !type || !date) {
-            alert("برجاء إكمال البيانات يا فندم");
-            return;
+    function showView(view) {
+        if(view === 'packages') {
+            document.getElementById('main-view').style.display = 'none';
+            document.getElementById('packages-view').style.display = 'flex';
+        } else {
+            document.getElementById('packages-content' ? 'packages-view' : '').style.display = 'none';
+            document.getElementById('main-view').style.display = 'flex';
         }
-
-        const message = `طلب حجز جديد لـ محمد التركي:\nالاسم: ${name}\nالمناسبة: ${type}\nالتاريخ: ${date}`;
-        const url = `https://wa.me/201024486602?text=${encodeURIComponent(message)}`;
-        window.open(url, '_blank');
     }
 </script>
-
 </body>
 </html>
