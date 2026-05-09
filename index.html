@@ -164,9 +164,20 @@
         </div>
 
         <h2 style="color: var(--gold); font-family: 'Cinzel'; margin-top:20px;">الخطوبة / الحنة / كتب الكتاب</h2>
+        
         <div class="package-card" onclick="bookPkg('VIP ENGAGEMENT', '3,700 LE')">
             <div class="pkg-header"><span class="pkg-name">VIP PACKAGE</span><span class="pkg-price">3,700 LE</span></div>
             <div class="pkg-desc">سيشن وحفلة + ألبوم 30*45 + 2 تابلوه + فلاشة هدية</div>
+        </div>
+
+        <div class="package-card" onclick="bookPkg('STANDARD ENGAGEMENT', '2,800 LE')">
+            <div class="pkg-header"><span class="pkg-name">STANDARD PACKAGE</span><span class="pkg-price">2,800 LE</span></div>
+            <div class="pkg-desc">تصوير سيشن وحفلة + ألبوم 20*50 + تابلوه هدية</div>
+        </div>
+
+        <div class="package-card" onclick="bookPkg('BASIC ENGAGEMENT', '2,200 LE')">
+            <div class="pkg-header"><span class="pkg-name">BASIC PACKAGE</span><span class="pkg-price">2,200 LE</span></div>
+            <div class="pkg-desc">تصوير سيشن وحفلة + ألبوم ميني + برواز هدية</div>
         </div>
 
         <h2 style="color: var(--gold); font-family: 'Cinzel'; margin-top:20px;">SESSIONS | جلسات التصوير</h2>
@@ -195,9 +206,9 @@
 </div>
 
 <div id="booking-modal" class="modal"><div class="modal-content">
-    <h3 style="text-align:center; color:var(--gold);">تفاصيل الحجز</h3>
+    <h3 style="text-align:center; color:var(--gold);">تفاصيل الحجز يا فندم</h3>
     <input type="text" id="cust-name" placeholder="الاسم بالكامل">
-    <select id="cust-type"><option value="سيشن زفاف">سيشن زفاف</option><option value="فرح كامل">فرح كامل</option><option value="خطوبة">خطوبة</option></select>
+    <select id="cust-type"><option value="سيشن">سيشن</option><option value="فرح كامل">فرح كامل</option><option value="خطوبة">خطوبة</option></select>
     <input type="date" id="cust-date">
     <button class="confirm-btn" onclick="sendHajz()">تأكيد الحجز واتساب</button>
     <p onclick="closeAll()" style="text-align:center; cursor:pointer; color:#888;">إغلاق</p>
