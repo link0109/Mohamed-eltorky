@@ -65,7 +65,9 @@
             width: 100%; max-width: 380px; background: rgba(255,255,255,0.05); 
             border-radius: 15px; padding: 18px; margin-bottom: 15px; 
             border-right: 5px solid var(--gold); border: 1px solid var(--border-color);
+            cursor: pointer; transition: transform 0.2s;
         }
+        .package-card:active { transform: scale(0.98); }
         .pkg-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
         .pkg-name { font-weight: bold; color: var(--gold); font-size: 16px; }
         .pkg-price { background: var(--gold); color: #000; padding: 2px 10px; border-radius: 6px; font-weight: bold; }
@@ -117,7 +119,6 @@
             <div class="btn-text">احجز الآن | Book Now</div>
         </div>
 
-        <!-- فيسبوك بيدج (Facebook Page) -->
         <a class="button fb" href="https://www.facebook.com/mohamed.eltorky.photography" target="_blank">
             <div class="icon-box"><i class="fab fa-facebook-f"></i></div><div class="btn-text">Facebook Page (My Work)</div>
         </a>
@@ -148,55 +149,44 @@
     </div>
 
     <div id="packages-view">
-        <h2 style="color: var(--gold); font-family: 'Cinzel'; margin-bottom: 15px;">WEDDING PACKAGES 2026</h2>
+        <h2 style="color: var(--gold); font-family: 'Cinzel'; margin-bottom: 5px;">WEDDING PACKAGES 2026</h2>
+        <p style="color: #888; font-size: 11px; margin-bottom: 15px;">إضغط على البكدج للاستفسار أو الحجز</p>
         
-        <div class="package-card">
+        <div class="package-card" onclick="bookPackage('VIP FULL DAY', '12,000 LE', 'سيشن كاجوال + حنة + زفاف + ريلز + ألبومات وهدايا كاملة')">
             <div class="pkg-header"><span class="pkg-name">VIP FULL DAY</span><span class="pkg-price">12,000 LE</span></div>
             <div class="pkg-desc">سيشن كاجوال + سيشن حنة + سيشن زفاف + تصوير ريلز الزفاف (صور غير محدود) + حفلة كتب الكتاب + حفلة الحنة + حفلة الزفاف + ألبوم 30*80 + ألبوم 30*45 + برواز 50*70 + تابلوه 40*60 + ساعة + مرايا + مخدة + 2 مج + فلاشة</div>
         </div>
 
-        <div class="package-card">
+        <div class="package-card" onclick="bookPackage('VIP WEDDING', '6,500 LE', 'سيشن + قاعة + ريلز + ألبومات وهدايا')">
             <div class="pkg-header"><span class="pkg-name">VIP WEDDING</span><span class="pkg-price">6,500 LE</span></div>
             <div class="pkg-desc">تصوير السيشن + تصوير القاعة + تصوير ريلز + ألبوم 30*80 + برواز 50*70 + ألبوم 30*45 + 2 تابلوه 30*40 + مرايا هدية</div>
         </div>
 
-        <div class="package-card">
+        <div class="package-card" onclick="bookPackage('STANDARD WEDDING', '4,200 LE', 'سيشن + حنة + ألبوم وهدايا')">
             <div class="pkg-header"><span class="pkg-name">STANDARD WEDDING</span><span class="pkg-price">4,200 LE</span></div>
             <div class="pkg-desc">تصوير السيشن + تصوير الحنة + ألبوم 30*45 + تابلوه 50*60 + 2 برواز 15*21</div>
         </div>
 
-        <div class="package-card">
+        <div class="package-card" onclick="bookPackage('BASIC WEDDING', '3,000 LE', 'سيشن + ألبوم + تابلوه')">
             <div class="pkg-header"><span class="pkg-name">BASIC WEDDING</span><span class="pkg-price">3,000 LE</span></div>
             <div class="pkg-desc">تصوير السيشن + ألبوم 30*45 + تابلوه 40*60</div>
         </div>
 
         <h2 style="color: var(--gold); font-family: 'Cinzel'; margin: 20px 0 15px 0; font-size: 20px;">الخطوبة / الحنة / كتب الكتاب</h2>
 
-        <div class="package-card">
+        <div class="package-card" onclick="bookPackage('VIP PACKAGE (Engagement/Katb Ktab)', '3,700 LE', 'سيشن + حفلة + ألبوم وهدايا')">
             <div class="pkg-header"><span class="pkg-name">VIP PACKAGE</span><span class="pkg-price">3,700 LE</span></div>
             <div class="pkg-desc">تصوير السيشن + تصوير الحفلة + ألبوم 30*45 + 2 تابلوه 30*40 + فلاشة هدية</div>
         </div>
 
-        <div class="package-card">
+        <div class="package-card" onclick="bookPackage('STANDARD (Engagement/Katb Ktab)', '2,800 LE', 'سيشن + حفلة')">
             <div class="pkg-header"><span class="pkg-name">STANDARD</span><span class="pkg-price">2,800 LE</span></div>
             <div class="pkg-desc">تصوير السيشن + تصوير الحفلة</div>
         </div>
 
-        <div class="package-card">
+        <div class="package-card" onclick="bookPackage('BASIC (Engagement/Katb Ktab)', '2,200 LE', 'سيشن + ألبوم')">
             <div class="pkg-header"><span class="pkg-name">BASIC</span><span class="pkg-price">2,200 LE</span></div>
             <div class="pkg-desc">تصوير السيشن + ألبوم 30*45</div>
-        </div>
-
-        <h2 style="color: var(--gold); font-family: 'Cinzel'; margin: 20px 0 15px 0; font-size: 20px;">SESSIONS | جلسات التصوير</h2>
-        
-        <div class="package-card" style="border-right: 5px solid #fff;">
-            <div class="pkg-desc" style="color: #fff;">
-                • سيشن زفاف: <b>2,000 LE</b><br>
-                • سيشن خطوبة: <b>1,700 LE</b><br>
-                • سيشن كاجوال / كتب كتاب: <b>1,500 LE</b><br>
-                • تصوير قاعة (عدد صور غير محدود): <b>1,700 LE</b><br>
-                • تصوير حفلة (كتب كتاب/حنة/خطوبة): <b>1,300 LE</b>
-            </div>
         </div>
 
         <div class="notes-box">
@@ -289,7 +279,6 @@
 </div>
 
 <script>
-// دالة لتحويل الأرقام العربية إلى إنجليزية لضمان عمل كود الاتصال
 function convertToEnglishNumbers(str) {
     const arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
     for (let i = 0; i < 10; i++) {
@@ -339,6 +328,12 @@ function sendToWhatsApp() {
     const time = (type === "كتب كتاب في البيت (Katb Ktab)") ? ` (موعد: ${document.getElementById('session-time').value})` : "";
     if(!name || !type || !date) { alert("من فضلك أكمل البيانات أولاً يا فندم"); return; }
     let msg = `حجز جديد لمحمد التركي:\nالاسم: ${name}\nالمناسبة: ${type}${time}\nالتاريخ: ${date}`;
+    window.open(`https://wa.me/201024486602?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// دالة جديدة للتحويل للواتساب عند اختيار بكدج محدد
+function bookPackage(pkgName, pkgPrice, pkgShortDesc) {
+    let msg = `استفسار عن بكدج تصوير:\nنوع البكدج: ${pkgName}\nالسعر: ${pkgPrice}\nالتفاصيل: ${pkgShortDesc}`;
     window.open(`https://wa.me/201024486602?text=${encodeURIComponent(msg)}`, '_blank');
 }
 </script>
