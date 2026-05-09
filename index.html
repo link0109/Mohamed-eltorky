@@ -45,7 +45,6 @@
         .icon-box { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 18px; color: #fff; }
         .btn-text { flex-grow: 1; text-align: center; font-size: 15px; padding-right: 42px; }
 
-        /* ألوان الأزرار الأصلية */
         .fb .icon-box { background: #1877F2; }
         .ig .icon-box { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         .tk .icon-box { background: #000; border: 1px solid rgba(255,255,255,0.2); }
@@ -118,6 +117,11 @@
             <div class="btn-text">احجز الآن | Book Now</div>
         </div>
 
+        <!-- فيسبوك بيدج (Facebook Page) -->
+        <a class="button fb" href="https://www.facebook.com/mohamed.eltorky.photography" target="_blank">
+            <div class="icon-box"><i class="fab fa-facebook-f"></i></div><div class="btn-text">Facebook Page (My Work)</div>
+        </a>
+
         <a class="button fb" href="https://www.facebook.com/share/187a3beKHT/" target="_blank">
             <div class="icon-box"><i class="fas fa-user-circle"></i></div><div class="btn-text">Personal Profile</div>
         </a>
@@ -138,13 +142,11 @@
             <div class="icon-box"><i class="fas fa-phone-alt"></i></div><div class="btn-text">اتصل بنا | Call Me</div>
         </div>
 
-        <!-- زرار الدفع بالشكل الأصلي (Ya Fandem) -->
         <div class="button vfcash" onclick="openPaymentSelection()">
             <div class="icon-box"><i class="fas fa-money-bill-wave"></i></div><div class="btn-text">تحويل المبلغ | Transfer</div>
         </div>
     </div>
 
-    <!-- قسم الباكدجات (بناءً على image_5 و image_6) -->
     <div id="packages-view">
         <h2 style="color: var(--gold); font-family: 'Cinzel'; margin-bottom: 15px;">WEDDING PACKAGES 2026</h2>
         
@@ -213,7 +215,6 @@
     <div class="footer-copyrights">© EL TORKY Photographer</div>
 </div>
 
-<!-- Modal الحجز -->
 <div id="booking-modal">
     <div class="modal-content">
         <h3 style="text-align:center; color:var(--gold); margin-bottom: 15px; font-size: 26px;">تفاصيل الحجز</h3>
@@ -250,7 +251,6 @@
     </div>
 </div>
 
-<!-- Modal اختيار وسيلة الدفع (باللغتين) -->
 <div id="payment-selection-modal">
     <div class="modal-content" style="text-align:center;">
         <h3 style="color:var(--gold); margin-bottom: 20px;">اختر وسيلة التحويل<br><span style="font-size:14px;">Select Transfer Method</span></h3>
@@ -261,21 +261,19 @@
     </div>
 </div>
 
-<!-- Modal فودافون كاش (إدخال المبلغ) -->
 <div id="vfcash-modal">
     <div class="modal-content" style="text-align:center;">
         <h3 style="color:var(--gold); margin-bottom: 20px;">فودافون كاش | Vodafone Cash</h3>
-        <input type="number" id="cash-amount" placeholder="أدخل المبلغ هنا | Enter Amount" style="text-align:center;">
+        <input type="text" id="cash-amount" placeholder="أدخل المبلغ هنا | Enter Amount" style="text-align:center;">
         <button class="confirm-btn" onclick="makeVFCashCall()" style="background:#e60000; color:white;">اتصال وتحويل الآن | Call & Transfer</button>
         <p onclick="closeVFCash()" style="color:#888; cursor:pointer; margin-top:20px;">إغلاق | Close</p>
     </div>
 </div>
 
-<!-- Modal أورنج كاش (إدخال المبلغ) -->
 <div id="orange-cash-modal">
     <div class="modal-content" style="text-align:center;">
         <h3 style="color:#ff6600; margin-bottom: 20px;">أورنج كاش | Orange Cash</h3>
-        <input type="number" id="orange-amount" placeholder="أدخل المبلغ هنا | Enter Amount" style="text-align:center;">
+        <input type="text" id="orange-amount" placeholder="أدخل المبلغ هنا | Enter Amount" style="text-align:center;">
         <button class="confirm-btn" onclick="makeOrangeCashCall()" style="background:#ff6600; color:white;">اتصال وتحويل الآن | Call & Transfer</button>
         <p onclick="closeOrangeCash()" style="color:#888; cursor:pointer; margin-top:20px;">إغلاق | Close</p>
     </div>
@@ -291,6 +289,15 @@
 </div>
 
 <script>
+// دالة لتحويل الأرقام العربية إلى إنجليزية لضمان عمل كود الاتصال
+function convertToEnglishNumbers(str) {
+    const arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
+    for (let i = 0; i < 10; i++) {
+        str = str.replace(arabicNumbers[i], i);
+    }
+    return str;
+}
+
 function toggleTime() {
     const val = document.getElementById('session-type').value;
     document.getElementById('time-selection').style.display = (val === "كتب كتاب في البيت (Katb Ktab)") ? "block" : "none";
@@ -312,14 +319,16 @@ function closeOrangeCash() { document.getElementById('orange-cash-modal').style.
 function handleInstaPay() { window.location.href = "https://ipn.eg/S/torky23/instapay/1Qtkaq"; }
 
 function makeVFCashCall() {
-    let amount = document.getElementById('cash-amount').value;
-    if(!amount) { alert("من فضلك اكتب المبلغ أولاً يا فندم"); return; }
+    let rawAmount = document.getElementById('cash-amount').value;
+    if(!rawAmount) { alert("من فضلك اكتب المبلغ أولاً يا فندم"); return; }
+    let amount = convertToEnglishNumbers(rawAmount);
     window.location.href = `tel:*9*7*01024486602*${amount}%23`;
 }
 
 function makeOrangeCashCall() {
-    let amount = document.getElementById('orange-amount').value;
-    if(!amount) { alert("من فضلك اكتب المبلغ أولاً يا فندم"); return; }
+    let rawAmount = document.getElementById('orange-amount').value;
+    if(!rawAmount) { alert("من فضلك اكتب المبلغ أولاً يا فندم"); return; }
+    let amount = convertToEnglishNumbers(rawAmount);
     window.location.href = `tel:%237115*7*${amount}*01206999546%23`;
 }
 
