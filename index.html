@@ -45,11 +45,13 @@
         .icon-box { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 18px; color: #fff; }
         .btn-text { flex-grow: 1; text-align: center; font-size: 15px; padding-right: 42px; }
 
+        /* ألوان الأزرار الأصلية */
         .fb .icon-box { background: #1877F2; }
         .ig .icon-box { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         .tk .icon-box { background: #000; border: 1px solid rgba(255,255,255,0.2); }
         .wa .icon-box { background: #25D366; }
         .call .icon-box { background: #444; }
+        .vfcash .icon-box { background: var(--gold); color: #000; }
         
         .packages-btn { 
             border: 2px solid var(--gold); 
@@ -70,7 +72,7 @@
         .pkg-price { background: var(--gold); color: #000; padding: 2px 10px; border-radius: 6px; font-weight: bold; }
         .pkg-desc { font-size: 13px; color: #ccc; line-height: 1.7; text-align: right; }
 
-        #booking-modal, #call-modal, #payment-selection-modal {
+        #booking-modal, #call-modal, #payment-selection-modal, #vfcash-modal, #orange-cash-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); z-index: 5000; justify-content: center; align-items: center;
         }
@@ -89,6 +91,11 @@
             width: 100%; max-width: 380px; text-align: right; background: rgba(212, 175, 55, 0.1); 
             padding: 15px; border-radius: 12px; margin: 10px 0 20px 0; border: 1px dashed var(--gold);
         }
+
+        .pay-option-btn { display: block; width: 100%; padding: 15px; margin: 12px 0; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; font-family: 'Cairo', sans-serif; text-align: center; }
+        .vf-style { background: #e60000; color: white; }
+        .orange-style { background: #ff6600; color: white; }
+        .insta-style { background: white; color: black; }
     </style>
 </head>
 <body>
@@ -131,13 +138,13 @@
             <div class="icon-box"><i class="fas fa-phone-alt"></i></div><div class="btn-text">اتصل بنا | Call Me</div>
         </div>
 
-        <div class="button" style="background: var(--gold); color: black;" onclick="openPaymentSelection()">
-            <div class="icon-box" style="background:rgba(0,0,0,0.1); color:black;"><i class="fas fa-money-bill-wave"></i></div>
-            <div class="btn-text" style="color: black; font-weight: bold;">تحويل المبلغ | Transfer</div>
+        <!-- زرار الدفع بالشكل الأصلي (Ya Fandem) -->
+        <div class="button vfcash" onclick="openPaymentSelection()">
+            <div class="icon-box"><i class="fas fa-money-bill-wave"></i></div><div class="btn-text">تحويل المبلغ | Transfer</div>
         </div>
     </div>
 
-    <!-- قسم الباكدجات الجديد كلياً -->
+    <!-- قسم الباكدجات (بناءً على image_5 و image_6) -->
     <div id="packages-view">
         <h2 style="color: var(--gold); font-family: 'Cinzel'; margin-bottom: 15px;">WEDDING PACKAGES 2026</h2>
         
@@ -209,22 +216,25 @@
 <!-- Modal الحجز -->
 <div id="booking-modal">
     <div class="modal-content">
-        <h3 style="text-align:center; color:var(--gold); margin-bottom: 15px;">تفاصيل الحجز</h3>
+        <h3 style="text-align:center; color:var(--gold); margin-bottom: 15px; font-size: 26px;">تفاصيل الحجز</h3>
+        <p style="text-align:center; color:#fff; font-size:14px; margin-bottom: 15px;">ألف مبروك يا فندم 🎉</p>
+        
         <label>المناسبة (Event Type):</label>
         <select id="session-type" onchange="toggleTime()">
             <option value="" disabled selected>اضغط لاختيار المناسبة</option>
-            <option value="سيشن زفاف">سيشن زفاف (Wedding Session)</option>
-            <option value="سيشن زفاف وقاعة">سيشن زفاف وقاعة (Session & Party)</option>
-            <option value="كتب كتاب في البيت">كتب كتاب في البيت (Katb Ktab)</option>
-            <option value="سيشن خطوبة">سيشن خطوبة (Engagement Session)</option>
-            <option value="حفلة تخرج">حفلة تخرج (Graduation Party)</option>
+            <option value="سيشن زفاف (Wedding Session)">سيشن زفاف (Wedding Session)</option>
+            <option value="سيشن زفاف و قاعة (Session & Party)">سيشن زفاف وقاعة (Session & Party)</option>
+            <option value="سيشن كتب كتاب (Katb Ktab Session)">سيشن كتب كتاب (Katb Ktab Session)</option>
+            <option value="كتب كتاب في البيت (Katb Ktab)">كتب كتاب في البيت (Katb Ktab)</option>
+            <option value="سيشن خطوبة (Engagement Session)">سيشن خطوبة (Engagement Session)</option>
+            <option value="قاعة أو فرح (Party)">قاعة أو فرح (Party)</option>
         </select>
 
         <label style="display:block; margin-top:15px;">التاريخ (Date):</label>
         <input type="date" id="session-date">
 
         <div id="time-selection" style="display:none; margin-top:15px;">
-            <label>موعد كتب الكتاب:</label>
+            <label>موعد كتب الكتاب (Timing):</label>
             <select id="session-time">
                 <option value="بعد صلاة العصر">بعد صلاة العصر</option>
                 <option value="بعد صلاة المغرب">بعد صلاة المغرب</option>
@@ -240,31 +250,50 @@
     </div>
 </div>
 
-<!-- Modal الاتصال -->
-<div id="call-modal">
+<!-- Modal اختيار وسيلة الدفع (باللغتين) -->
+<div id="payment-selection-modal">
     <div class="modal-content" style="text-align:center;">
-        <h3 style="color:var(--gold);">اتصل بنا</h3>
-        <a href="tel:01024486602" style="display:block; background:#e60000; padding:15px; color:white; border-radius:10px; text-decoration:none; margin:10px 0;">01024486602</a>
-        <a href="tel:01206999546" style="display:block; background:#FF6600; padding:15px; color:white; border-radius:10px; text-decoration:none; margin:10px 0;">01206999546</a>
-        <p onclick="closeCallModal()" style="color:#888; cursor:pointer; margin-top:10px;">إغلاق</p>
+        <h3 style="color:var(--gold); margin-bottom: 20px;">اختر وسيلة التحويل<br><span style="font-size:14px;">Select Transfer Method</span></h3>
+        <button class="pay-option-btn vf-style" onclick="showVFCashPage()">فودافون كاش | Vodafone Cash</button>
+        <button class="pay-option-btn orange-style" onclick="showOrangeCashPage()">أورنج كاش | Orange Cash</button>
+        <button class="pay-option-btn insta-style" onclick="handleInstaPay()">إنستا باي | InstaPay</button>
+        <p onclick="closePaymentSelection()" style="color:#888; cursor:pointer; margin-top:15px;">إغلاق | Close</p>
     </div>
 </div>
 
-<!-- Modal الدفع -->
-<div id="payment-selection-modal">
+<!-- Modal فودافون كاش (إدخال المبلغ) -->
+<div id="vfcash-modal">
     <div class="modal-content" style="text-align:center;">
-        <h3 style="color:var(--gold); margin-bottom: 20px;">وسيلة التحويل</h3>
-        <button class="confirm-btn" style="background:#e60000; color:white; margin:10px 0;" onclick="window.location.href='tel:*9*7*01024486602%23'">فودافون كاش</button>
-        <button class="confirm-btn" style="background:#ff6600; color:white; margin:10px 0;" onclick="window.location.href='tel:%237115*7*01206999546%23'">أورنج كاش</button>
-        <button class="confirm-btn" style="background:white; color:black; margin:10px 0;" onclick="window.location.href='https://ipn.eg/S/torky23/instapay/1Qtkaq'">InstaPay</button>
-        <p onclick="closePaymentSelection()" style="color:#888; cursor:pointer; margin-top:15px;">إغلاق</p>
+        <h3 style="color:var(--gold); margin-bottom: 20px;">فودافون كاش | Vodafone Cash</h3>
+        <input type="number" id="cash-amount" placeholder="أدخل المبلغ هنا | Enter Amount" style="text-align:center;">
+        <button class="confirm-btn" onclick="makeVFCashCall()" style="background:#e60000; color:white;">اتصال وتحويل الآن | Call & Transfer</button>
+        <p onclick="closeVFCash()" style="color:#888; cursor:pointer; margin-top:20px;">إغلاق | Close</p>
+    </div>
+</div>
+
+<!-- Modal أورنج كاش (إدخال المبلغ) -->
+<div id="orange-cash-modal">
+    <div class="modal-content" style="text-align:center;">
+        <h3 style="color:#ff6600; margin-bottom: 20px;">أورنج كاش | Orange Cash</h3>
+        <input type="number" id="orange-amount" placeholder="أدخل المبلغ هنا | Enter Amount" style="text-align:center;">
+        <button class="confirm-btn" onclick="makeOrangeCashCall()" style="background:#ff6600; color:white;">اتصال وتحويل الآن | Call & Transfer</button>
+        <p onclick="closeOrangeCash()" style="color:#888; cursor:pointer; margin-top:20px;">إغلاق | Close</p>
+    </div>
+</div>
+
+<div id="call-modal">
+    <div class="modal-content" style="text-align:center;">
+        <h3 style="color:var(--gold);">اختر الخط للاتصال</h3>
+        <a href="tel:01024486602" style="display:block; background:#e60000; padding:15px; color:white; border-radius:10px; text-decoration:none; margin:10px 0;">01024486602</a>
+        <a href="tel:01206999546" style="display:block; background:#FF6600; padding:15px; color:white; border-radius:10px; text-decoration:none; margin:10px 0;">01206999546</a>
+        <p onclick="closeCallModal()" style="color:#888; cursor:pointer;">إغلاق</p>
     </div>
 </div>
 
 <script>
 function toggleTime() {
     const val = document.getElementById('session-type').value;
-    document.getElementById('time-selection').style.display = (val === "كتب كتاب في البيت") ? "block" : "none";
+    document.getElementById('time-selection').style.display = (val === "كتب كتاب في البيت (Katb Ktab)") ? "block" : "none";
 }
 function showPackages() { document.getElementById('main-view').style.display='none'; document.getElementById('packages-view').style.display='flex'; window.scrollTo(0,0); }
 function showMain() { document.getElementById('packages-view').style.display='none'; document.getElementById('main-view').style.display='flex'; }
@@ -272,16 +301,35 @@ function openBooking() { document.getElementById('booking-modal').style.display 
 function closeBooking() { document.getElementById('booking-modal').style.display = 'none'; }
 function openCallModal() { document.getElementById('call-modal').style.display = 'flex'; }
 function closeCallModal() { document.getElementById('call-modal').style.display = 'none'; }
+
 function openPaymentSelection() { document.getElementById('payment-selection-modal').style.display = 'flex'; }
-function closePaymentSelection() { document.getElementById('payment-selection-modal').style.none = 'none'; document.getElementById('payment-selection-modal').style.display = 'none'; }
+function closePaymentSelection() { document.getElementById('payment-selection-modal').style.display = 'none'; }
+function showVFCashPage() { closePaymentSelection(); document.getElementById('vfcash-modal').style.display = 'flex'; }
+function showOrangeCashPage() { closePaymentSelection(); document.getElementById('orange-cash-modal').style.display = 'flex'; }
+function closeVFCash() { document.getElementById('vfcash-modal').style.display = 'none'; }
+function closeOrangeCash() { document.getElementById('orange-cash-modal').style.display = 'none'; }
+
+function handleInstaPay() { window.location.href = "https://ipn.eg/S/torky23/instapay/1Qtkaq"; }
+
+function makeVFCashCall() {
+    let amount = document.getElementById('cash-amount').value;
+    if(!amount) { alert("من فضلك اكتب المبلغ أولاً يا فندم"); return; }
+    window.location.href = `tel:*9*7*01024486602*${amount}%23`;
+}
+
+function makeOrangeCashCall() {
+    let amount = document.getElementById('orange-amount').value;
+    if(!amount) { alert("من فضلك اكتب المبلغ أولاً يا فندم"); return; }
+    window.location.href = `tel:%237115*7*${amount}*01206999546%23`;
+}
 
 function sendToWhatsApp() {
     const name = document.getElementById('user-name').value;
     const type = document.getElementById('session-type').value;
     const date = document.getElementById('session-date').value;
-    const time = (type === "كتب كتاب في البيت") ? ` (موعد: ${document.getElementById('session-time').value})` : "";
-    if(!name || !type || !date) { alert("من فضلك أكمل البيانات"); return; }
-    let msg = `حجز جديد:\nالاسم: ${name}\nالمناسبة: ${type}${time}\nالتاريخ: ${date}`;
+    const time = (type === "كتب كتاب في البيت (Katb Ktab)") ? ` (موعد: ${document.getElementById('session-time').value})` : "";
+    if(!name || !type || !date) { alert("من فضلك أكمل البيانات أولاً يا فندم"); return; }
+    let msg = `حجز جديد لمحمد التركي:\nالاسم: ${name}\nالمناسبة: ${type}${time}\nالتاريخ: ${date}`;
     window.open(`https://wa.me/201024486602?text=${encodeURIComponent(msg)}`, '_blank');
 }
 </script>
