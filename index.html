@@ -61,7 +61,7 @@
             width: 100%; max-width: 380px; background: rgba(255,255,255,0.05); 
             border-radius: 15px; padding: 18px; margin-bottom: 15px; 
             border-right: 5px solid var(--gold); border: 1px solid var(--border-color);
-            cursor: pointer; transition: 0.3s;
+            cursor: pointer; transition: 0.3s; box-sizing: border-box;
         }
         .pkg-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
         .pkg-name { font-weight: bold; color: var(--gold); font-size: 16px; }
@@ -155,7 +155,7 @@
 
         <div class="package-card" onclick="bookPkg('STANDARD WEDDING', '4,200 LE')">
             <div class="pkg-header"><span class="pkg-name">STANDARD WEDDING</span><span class="pkg-price">4,200 LE</span></div>
-            <div class="pkg-desc">سيشن وحنة + ألبوم 30*45 + تابلوه 50*60 + 2 برواز هدية</div>
+            <div class="pkg-desc">تصوير سيشن وحنة + ألبوم 30*45 + تابلوه 50*60 + 2 برواز هدية</div>
         </div>
 
         <div class="package-card" onclick="bookPkg('BASIC WEDDING', '3,000 LE')">
@@ -195,7 +195,7 @@
 </div>
 
 <div id="booking-modal" class="modal"><div class="modal-content">
-    <h3 style="text-align:center; color:var(--gold);">تفاصيل الحجز يا فندم</h3>
+    <h3 style="text-align:center; color:var(--gold);">تفاصيل الحجز</h3>
     <input type="text" id="cust-name" placeholder="الاسم بالكامل">
     <select id="cust-type"><option value="سيشن زفاف">سيشن زفاف</option><option value="فرح كامل">فرح كامل</option><option value="خطوبة">خطوبة</option></select>
     <input type="date" id="cust-date">
