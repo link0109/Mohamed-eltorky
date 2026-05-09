@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EL TORKY Photography</title>
+    <!-- الروابط الخارجية للخطوط والأيقونات -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --gold: #d4af37; 
+            --dark-bg: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body { 
+            margin: 0; 
+            font-family: 'Cairo', sans-serif; 
+            background: #000; 
+            color: #fff; 
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* حاوية الصفحة الرئيسية */
+        .main-container {
+            width: 100%;
+            max-width: 450px;
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), #000);
+        }
+
+        /* صورة البروفايل بصيغة JPEG كابيتال */
+        .profile-pic {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            object-fit: cover;
+            margin-bottom: 15px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .brand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            margin: 5px 0;
+            letter-spacing: 2px;
+        }
+
+        .brand-sub {
+            color: var(--gold);
+            font-size: 12px;
+            letter-spacing: 4px;
+            margin-bottom: 35px;
+            text-transform: uppercase;
+        }
+
+        /* تنسيق الأزرار */
+        .link-card {
+            display: flex;
+            align-items: center;
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            text-decoration: none;
+            color: #fff;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .link-card:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--gold);
+        }
+
+        .link-card i {
+            width: 35px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .link-card span {
+            flex-grow: 1;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* زر الباقات المميز */
+        .packages-btn {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            margin-bottom: 25px;
+        }
+
+        .packages-btn i { color: var(--gold); }
+
+        /* التحكم في عرض الأقسام */
+        #main-content, #packages-content {
+            width: 100%;
+        }
+
+        #packages-content { display: none; }
+
+        /* كروت الباقات */
+        .package-item {
+            background: #111;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-right: 4px solid var(--gold);
+            text-align: right;
+        }
+
+        .package-name { color: var(--gold); font-weight: bold; font-size: 18px; margin-bottom: 5px; }
+        .package-price { float: left; font-size: 16px; background: var(--gold); color: #000; padding: 2px 10px; border-radius: 5px; }
+        .package-desc { font-size: 13px; color: #aaa; clear: both; padding-top: 10px; }
+
+        .back-btn {
+            background: none;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-family: 'Cairo';
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <!-- صورة البروفايل - تأكد أن اسم الملف عندك profile.JPEG -->
+    <img src="profile.JPEG" alt="EL TORKY" class="profile-pic">
+
+    <div class="brand-title">EL TORKY</div>
+    <div class="brand-sub">Photography</div>
+
+    <!-- القسم الرئيسي -->
+    <div id="main-content">
+        <div class="link-card packages-btn" onclick="showPackages()">
+            <i class="fas fa-tags"></i>
+            <span>زرار الاسعار والبكدجات</span>
+        </div>
+
+        <a href="https://wa.me/201024486602" class="link-card">
+            <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+            <span>تواصل واتساب</span>
+        </a>
+
+        <a href="https://www.facebook.com/share/187a3beKHT/" class="link-card">
+            <i class="fab fa-facebook" style="color: #1877F2;"></i>
+            <span>فيسبوك بروفايل</span>
+        </a>
+
+        <a href="https://www.instagram.com/el_torky_photography" class="link-card">
+            <i class="fab fa-instagram" style="color: #E1306C;"></i>
+            <span>إنستجرام</span>
+        </a>
+
+        <a href="tel:01024486602" class="link-card">
+            <i class="fas fa-phone-alt"></i>
+            <span>اتصال هاتفي</span>
+        </a>
+    </div>
+
+    <!-- قسم الباقات (مخفي ويظهر عند الضغط) -->
+    <div id="packages-content">
+        <h3 style="color: var(--gold); margin-bottom: 25px;">باقات وعروض 2026</h3>
+        
+        <div class="package-item">
+            <span class="package-price">12,000 LE</span>
+            <div class="package-name">VIP FULL DAY</div>
+            <div class="package-desc">كاجوال + حنة + زفاف + ريلز + ألبوم 30*80 + تابلوه + فلاشة</div>
+        </div>
+
+        <div class="package-item">
+            <span class="package-price">6,500 LE</span>
+            <div class="package-name">VIP PACKAGE</div>
+            <div class="package-desc">سيشن + قاعة + ريلز + ألبوم 30*80 + برواز + 2 تابلوه</div>
+        </div>
+
+        <div class="package-item">
+            <span class="package-price">4,200 LE</span>
+            <div class="package-name">STANDARD</div>
+            <div class="package-desc">سيشن + حنة + ألبوم 30*45 + تابلوه + 2 برواز</div>
+        </div>
+
+        <button class="back-btn" onclick="showMain()">العودة للرئيسية</button>
+    </div>
+
+</div>
+
+<script>
+    function showPackages() {
+        document.getElementById('main-content').style.display = 'none';
+        document.getElementById('packages-content').style.display = 'block';
+    }
+
+    function showMain() {
+        document.getElementById('packages-content').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
