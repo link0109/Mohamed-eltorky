@@ -45,7 +45,6 @@
         .icon-box { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 18px; color: #fff; }
         .btn-text { flex-grow: 1; text-align: center; font-size: 15px; padding-right: 42px; }
 
-        /* ألوان الأزرار الأصلية */
         .fb .icon-box { background: #1877F2; }
         .ig .icon-box { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         .tk .icon-box { background: #000; border: 1px solid rgba(255,255,255,0.2); }
@@ -66,7 +65,9 @@
             width: 100%; max-width: 380px; background: rgba(255,255,255,0.05); 
             border-radius: 15px; padding: 18px; margin-bottom: 15px; 
             border-right: 5px solid var(--gold); border: 1px solid var(--border-color);
+            cursor: pointer; transition: 0.3s; text-decoration: none; display: block;
         }
+        .package-card:hover { background: rgba(255,255,255,0.1); transform: scale(1.02); }
         .pkg-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
         .pkg-name { font-weight: bold; color: var(--gold); font-size: 16px; }
         .pkg-price { background: var(--gold); color: #000; padding: 2px 10px; border-radius: 6px; font-weight: bold; }
@@ -122,6 +123,11 @@
             <div class="icon-box"><i class="fas fa-user-circle"></i></div><div class="btn-text">Personal Profile</div>
         </a>
 
+        <!-- لينك الفيسبوك بيج الجديد يا فندم -->
+        <a class="button fb" href="https://www.facebook.com/share/1dk5VXaDCu/?mibextid=wwXIfr" target="_blank">
+            <div class="icon-box"><i class="fab fa-facebook-f"></i></div><div class="btn-text">Facebook Page</div>
+        </a>
+
         <a class="button ig" href="https://www.instagram.com/el_torky_photography" target="_blank">
             <div class="icon-box"><i class="fab fa-instagram"></i></div><div class="btn-text">Instagram</div>
         </a>
@@ -138,73 +144,49 @@
             <div class="icon-box"><i class="fas fa-phone-alt"></i></div><div class="btn-text">اتصل بنا | Call Me</div>
         </div>
 
-        <!-- زرار الدفع بالشكل الأصلي (Ya Fandem) -->
         <div class="button vfcash" onclick="openPaymentSelection()">
             <div class="icon-box"><i class="fas fa-money-bill-wave"></i></div><div class="btn-text">تحويل المبلغ | Transfer</div>
         </div>
     </div>
 
-    <!-- قسم الباكدجات (بناءً على image_5 و image_6) -->
     <div id="packages-view">
         <h2 style="color: var(--gold); font-family: 'Cinzel'; margin-bottom: 15px;">WEDDING PACKAGES 2026</h2>
         
-        <div class="package-card">
+        <div class="package-card" onclick="bookPackage('VIP FULL DAY', '12,000 LE')">
             <div class="pkg-header"><span class="pkg-name">VIP FULL DAY</span><span class="pkg-price">12,000 LE</span></div>
             <div class="pkg-desc">سيشن كاجوال + سيشن حنة + سيشن زفاف + تصوير ريلز الزفاف (صور غير محدود) + حفلة كتب الكتاب + حفلة الحنة + حفلة الزفاف + ألبوم 30*80 + ألبوم 30*45 + برواز 50*70 + تابلوه 40*60 + ساعة + مرايا + مخدة + 2 مج + فلاشة</div>
         </div>
 
-        <div class="package-card">
+        <div class="package-card" onclick="bookPackage('VIP WEDDING', '6,500 LE')">
             <div class="pkg-header"><span class="pkg-name">VIP WEDDING</span><span class="pkg-price">6,500 LE</span></div>
             <div class="pkg-desc">تصوير السيشن + تصوير القاعة + تصوير ريلز + ألبوم 30*80 + برواز 50*70 + ألبوم 30*45 + 2 تابلوه 30*40 + مرايا هدية</div>
         </div>
 
-        <div class="package-card">
+        <div class="package-card" onclick="bookPackage('STANDARD WEDDING', '4,200 LE')">
             <div class="pkg-header"><span class="pkg-name">STANDARD WEDDING</span><span class="pkg-price">4,200 LE</span></div>
             <div class="pkg-desc">تصوير السيشن + تصوير الحنة + ألبوم 30*45 + تابلوه 50*60 + 2 برواز 15*21</div>
         </div>
 
-        <div class="package-card">
+        <div class="package-card" onclick="bookPackage('BASIC WEDDING', '3,000 LE')">
             <div class="pkg-header"><span class="pkg-name">BASIC WEDDING</span><span class="pkg-price">3,000 LE</span></div>
             <div class="pkg-desc">تصوير السيشن + ألبوم 30*45 + تابلوه 40*60</div>
         </div>
 
         <h2 style="color: var(--gold); font-family: 'Cinzel'; margin: 20px 0 15px 0; font-size: 20px;">الخطوبة / الحنة / كتب الكتاب</h2>
 
-        <div class="package-card">
+        <div class="package-card" onclick="bookPackage('VIP PACKAGE (خطوبة)', '3,700 LE')">
             <div class="pkg-header"><span class="pkg-name">VIP PACKAGE</span><span class="pkg-price">3,700 LE</span></div>
             <div class="pkg-desc">تصوير السيشن + تصوير الحفلة + ألبوم 30*45 + 2 تابلوه 30*40 + فلاشة هدية</div>
         </div>
 
-        <div class="package-card">
+        <div class="package-card" onclick="bookPackage('STANDARD (خطوبة)', '2,800 LE')">
             <div class="pkg-header"><span class="pkg-name">STANDARD</span><span class="pkg-price">2,800 LE</span></div>
             <div class="pkg-desc">تصوير السيشن + تصوير الحفلة</div>
         </div>
 
-        <div class="package-card">
+        <div class="package-card" onclick="bookPackage('BASIC (خطوبة)', '2,200 LE')">
             <div class="pkg-header"><span class="pkg-name">BASIC</span><span class="pkg-price">2,200 LE</span></div>
             <div class="pkg-desc">تصوير السيشن + ألبوم 30*45</div>
-        </div>
-
-        <h2 style="color: var(--gold); font-family: 'Cinzel'; margin: 20px 0 15px 0; font-size: 20px;">SESSIONS | جلسات التصوير</h2>
-        
-        <div class="package-card" style="border-right: 5px solid #fff;">
-            <div class="pkg-desc" style="color: #fff;">
-                • سيشن زفاف: <b>2,000 LE</b><br>
-                • سيشن خطوبة: <b>1,700 LE</b><br>
-                • سيشن كاجوال / كتب كتاب: <b>1,500 LE</b><br>
-                • تصوير قاعة (عدد صور غير محدود): <b>1,700 LE</b><br>
-                • تصوير حفلة (كتب كتاب/حنة/خطوبة): <b>1,300 LE</b>
-            </div>
-        </div>
-
-        <div class="notes-box">
-            <h4 style="color: var(--gold); margin: 0 0 8px 0; font-size: 16px;">NOTES | ملاحظات</h4>
-            <ul style="color: #eee; font-size: 12.5px; padding-right: 20px; margin: 0; line-height: 1.6;">
-                <li>جميع البكدجات مقدم حجز 1000 ج (ماعدا VIP Full Day مقدم 5000 ج).</li>
-                <li>يتم دفع العربون في الاستوديو أو عبر فودافون كاش.</li>
-                <li>تسديد باقي الحساب كحد أقصى يوم المناسبة.</li>
-                <li>التسليم خلال 21 إلى 28 يوم كحد أقصى.</li>
-            </ul>
         </div>
 
         <button class="confirm-btn" onclick="showMain()" style="background:none; color:var(--gold); border:1px solid var(--gold); width:auto; padding:10px 40px; margin-bottom: 40px;">العودة للرئيسية</button>
@@ -213,7 +195,6 @@
     <div class="footer-copyrights">© EL TORKY Photographer</div>
 </div>
 
-<!-- Modal الحجز -->
 <div id="booking-modal">
     <div class="modal-content">
         <h3 style="text-align:center; color:var(--gold); margin-bottom: 15px; font-size: 26px;">تفاصيل الحجز</h3>
@@ -250,7 +231,6 @@
     </div>
 </div>
 
-<!-- Modal اختيار وسيلة الدفع (باللغتين) -->
 <div id="payment-selection-modal">
     <div class="modal-content" style="text-align:center;">
         <h3 style="color:var(--gold); margin-bottom: 20px;">اختر وسيلة التحويل<br><span style="font-size:14px;">Select Transfer Method</span></h3>
@@ -261,7 +241,6 @@
     </div>
 </div>
 
-<!-- Modal فودافون كاش (إدخال المبلغ) -->
 <div id="vfcash-modal">
     <div class="modal-content" style="text-align:center;">
         <h3 style="color:var(--gold); margin-bottom: 20px;">فودافون كاش | Vodafone Cash</h3>
@@ -271,7 +250,6 @@
     </div>
 </div>
 
-<!-- Modal أورنج كاش (إدخال المبلغ) -->
 <div id="orange-cash-modal">
     <div class="modal-content" style="text-align:center;">
         <h3 style="color:#ff6600; margin-bottom: 20px;">أورنج كاش | Orange Cash</h3>
@@ -330,6 +308,11 @@ function sendToWhatsApp() {
     const time = (type === "كتب كتاب في البيت (Katb Ktab)") ? ` (موعد: ${document.getElementById('session-time').value})` : "";
     if(!name || !type || !date) { alert("من فضلك أكمل البيانات أولاً يا فندم"); return; }
     let msg = `حجز جديد لمحمد التركي:\nالاسم: ${name}\nالمناسبة: ${type}${time}\nالتاريخ: ${date}`;
+    window.open(`https://wa.me/201024486602?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function bookPackage(pkgName, pkgPrice) {
+    let msg = `استفسار عن باكدج تصوير:\nنوع الباكدج: ${pkgName}\nالسعر: ${pkgPrice}\nممكن تفاصيل أكتر؟`;
     window.open(`https://wa.me/201024486602?text=${encodeURIComponent(msg)}`, '_blank');
 }
 </script>
